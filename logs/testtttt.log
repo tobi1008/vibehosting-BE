@@ -1,0 +1,245 @@
+=== [BẮT ĐẦU DEPLOY] testtttt ===
+[1] Đang clone repo: https://github.com/tobi1008/vibecode.git...
+> Chạy lệnh: git clone https://github.com/tobi1008/vibecode.git /opt/vibe-hosting/workspaces/testtttt
+[2] Đang quét cấu trúc mã nguồn...
+> Chạy lệnh: tree -I node_modules|.git|venv /opt/vibe-hosting/workspaces/testtttt
+/opt/vibe-hosting/workspaces/testtttt
+├── AGENTS.md
+├── CLAUDE.md
+├── docker-compose.yml
+├── Dockerfile
+├── eslint.config.mjs
+├── next.config.ts
+├── package.json
+├── package-lock.json
+├── postcss.config.mjs
+├── public
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── README.md
+├── src
+│   └── app
+│       ├── favicon.ico
+│       ├── globals.css
+│       ├── layout.tsx
+│       └── page.tsx
+├── tsconfig.json
+└── vibecode-deploy.zip
+
+3 directories, 21 files
+
+[3] Đang gọi Hermes AI Agent phân tích và sinh cấu hình...
+[4] Đang lưu cấu hình K3s & Nixpacks...
+[5] Bắt đầu build Docker image bằng Nixpacks: tobi1008/testtttt:latest...
+> Chạy lệnh: nixpacks build . --name tobi1008/testtttt:latest
+
+╔════════ Nixpacks v1.41.0 ═══════╗
+║ setup      │ nodejs_20, npm-9_x ║
+║─────────────────────────────────║
+║ install    │ npm ci             ║
+║─────────────────────────────────║
+║ build      │ npm run build      ║
+║─────────────────────────────────║
+║ start      │ npm run start      ║
+╚═════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/testtttt:latest
+
+[6] Đang đẩy Image lên Docker Hub (tobi1008)...
+> Chạy lệnh: docker push tobi1008/testtttt:latest
+The push refers to repository [docker.io/tobi1008/testtttt]
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7e80beb318ba: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7e80beb318ba: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+7e80beb318ba: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Mounted from tobi1008/vibecode
+2726e237d1a3: Mounted from tobi1008/vibecode
+7e80beb318ba: Waiting
+44136fa355b3: Mounted from tobi1008/vibecode
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+866b26ac4e47: Mounted from tobi1008/vibecode
+0909bdfc568c: Waiting
+ae28d8886667: Waiting
+61aa9424035a: Waiting
+b65af0a51d86: Mounted from tobi1008/vibecode
+0909bdfc568c: Waiting
+ae28d8886667: Mounted from tobi1008/vibecode
+61aa9424035a: Waiting
+c94a2311ad55: Waiting
+0909bdfc568c: Waiting
+61aa9424035a: Waiting
+c94a2311ad55: Waiting
+61aa9424035a: Waiting
+c94a2311ad55: Waiting
+0909bdfc568c: Waiting
+4e4f6046468c: Waiting
+0909bdfc568c: Waiting
+4e4f6046468c: Waiting
+61aa9424035a: Waiting
+c94a2311ad55: Waiting
+4f4fb700ef54: Waiting
+7e80beb318ba: Pushed
+0909bdfc568c: Waiting
+4e4f6046468c: Waiting
+61aa9424035a: Waiting
+c94a2311ad55: Waiting
+5a8e4c77d969: Waiting
+0909bdfc568c: Mounted from tobi1008/vibecode
+4e4f6046468c: Waiting
+61aa9424035a: Mounted from tobi1008/vibecode
+c94a2311ad55: Waiting
+4f4fb700ef54: Waiting
+eb9c5a9817f9: Waiting
+5a8e4c77d969: Waiting
+4e4f6046468c: Waiting
+c94a2311ad55: Waiting
+4f4fb700ef54: Waiting
+eb9c5a9817f9: Waiting
+4f4fb700ef54: Waiting
+eb9c5a9817f9: Waiting
+5a8e4c77d969: Waiting
+4e4f6046468c: Waiting
+eb9c5a9817f9: Waiting
+5a8e4c77d969: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+eb9c5a9817f9: Waiting
+5a8e4c77d969: Waiting
+4f4fb700ef54: Mounted from tobi1008/vibecode
+eb9c5a9817f9: Waiting
+5a8e4c77d969: Waiting
+eb9c5a9817f9: Pushed
+c94a2311ad55: Pushed
+5a8e4c77d969: Pushed
+4e4f6046468c: Pushed
+latest: digest: sha256:a0d7ba7209a86b77ed7fbd8932697e202edb602cbcfb20fa9c974381aef7fe82 size: 856
+
+[7] Yêu cầu K3s triển khai ứng dụng (Kèm tên miền & SSL)...
+> Chạy lệnh: kubectl apply -f k8s/deployment.yaml
+deployment.apps/testtttt created
+
+> Chạy lệnh: kubectl apply -f k8s/service.yaml
+service/testtttt created
+
+> Chạy lệnh: kubectl apply -f k8s/ingress.yaml
+ingress.networking.k8s.io/testtttt created
+
+=== [HOÀN TẤT] Ứng dụng đã online tại https://vibetest.vibe.quyenlt.com ===
+DONE
+
+=== [BẮT ĐẦU XÓA DỰ ÁN] testtttt ===
+[1] Đang xóa khỏi cụm K3s...
+[2] Đang xóa Local Docker Image...
+[3] Đang gọi API Docker Hub để xóa Image...
+Lỗi gọi API Docker Hub: No connection adapters were found for '[https://hub.docker.com/v2/users/login/](https://hub.docker.com/v2/users/login/)'
+[4] Đang dọn dẹp mã nguồn trên VPS...
+=== [HOÀN TẤT XÓA] testtttt ===
+DELETED

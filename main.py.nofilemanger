@@ -1,0 +1,268 @@
+import os
+import json
+import shutil
+import subprocess
+from typing import Optional
+from fastapi import FastAPI, BackgroundTasks, Request, HTTPException, UploadFile, File, Form, Query
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+
+from builder_core import deploy_app, delete_app, BASE_WORKSPACE, K8S_NAMESPACE
+from cicd_core import redeploy_app
+from db_builder_core import deploy_app_with_db, deploy_fullstack_app, delete_app_db_resources
+from monorepo_builder_core import deploy_monorepo_app
+
+app = FastAPI(title="Vibe Hosting API", version="2.2.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+CONFIG_DB_FILE = "/opt/vibe-hosting/apps_config.json"
+BACKUP_DIR = "/opt/vibe-hosting/backups"
+LOG_DIR = "/opt/vibe-hosting/logs"
+os.makedirs(BACKUP_DIR, exist_ok=True)
+os.makedirs(LOG_DIR, exist_ok=True)
+
+def get_app_config(app_name: str) -> dict:
+    if not os.path.exists(CONFIG_DB_FILE): 
+        return {"auto_cicd": True}
+    with open(CONFIG_DB_FILE, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    return data.get(app_name, {"auto_cicd": True})
+
+def save_app_config(app_name: str, config: dict):
+    data = {}
+    if os.path.exists(CONFIG_DB_FILE):
+        with open(CONFIG_DB_FILE, "r", encoding="utf-8") as f: 
+            data = json.load(f)
+    data[app_name] = config
+    with open(CONFIG_DB_FILE, "w", encoding="utf-8") as f: 
+        json.dump(data, f, indent=2)
+
+def prepare_repo_url(url: str, token: Optional[str]) -> str:
+    if token and "github.com" in url and "@" not in url:
+        return url.replace("https://", f"https://{token}@")
+    return url
+
+# --- DATA SCHEMAS ---
+class DeployRequest(BaseModel):
+    repo_url: str
+    app_name: str
+    app_domain: str
+    github_token: Optional[str] = None
+
+class AppConfigUpdate(BaseModel):
+    auto_cicd: bool
+
+class MonorepoDeployRequest(BaseModel):
+    repo_url: str
+    app_name: str
+    be_domain: str
+    fe_domain: Optional[str] = None
+    db_type: Optional[str] = "mysql"
+    github_token: Optional[str] = None
+
+# --- 1. DEPLOY ĐƠN LẺ WEB-ONLY ---
+@app.post("/api/deploy")
+async def trigger_deploy(req: DeployRequest, background_tasks: BackgroundTasks):
+    final_url = prepare_repo_url(req.repo_url, req.github_token)
+    with open(f"{LOG_DIR}/{req.app_name}.log", "w", encoding="utf-8") as f:
+        f.write(f"🚀 [INIT] Bắt đầu quy trình Deploy Web: {req.app_name} ({req.app_domain})...\n")
+    save_app_config(req.app_name, {"auto_cicd": True})
+    background_tasks.add_task(deploy_app, final_url, req.app_name, req.app_domain)
+    return {"status": "success", "message": f"Hệ thống đang tiến hành Deploy {req.app_name}."}
+
+# --- 2. DEPLOY ĐƠN LẺ CÓ DATABASE (KÈM HOẶC KHÔNG KÈM FILE BACKUP) ---
+@app.post("/api/deploy-with-db")
+async def trigger_deploy_db(
+    background_tasks: BackgroundTasks,
+    repo_url: str = Form(...),
+    app_name: str = Form(...),
+    app_domain: str = Form(...),
+    db_type: str = Form(...),
+    github_token: Optional[str] = Form(None),
+    backup_file: Optional[UploadFile] = File(None) 
+):
+    final_url = prepare_repo_url(repo_url, github_token)
+    saved_backup_path = "" 
+    if backup_file and backup_file.filename:
+        safe_filename = os.path.basename(backup_file.filename)
+        saved_backup_path = f"{BACKUP_DIR}/{app_name}_{safe_filename}"
+        try:
+            with open(saved_backup_path, "wb") as buffer:
+                shutil.copyfileobj(backup_file.file, buffer)
+        except Exception as e:
+            return {"status": "error", "message": f"Lỗi lưu file DB: {str(e)}"}
+        finally:
+            backup_file.file.close()
+
+    with open(f"{LOG_DIR}/{app_name}.log", "w", encoding="utf-8") as f:
+        f.write(f"🚀 [INIT] Bắt đầu quy trình Deploy có Database: {app_name} ({db_type.upper()})...\n")
+
+    save_app_config(app_name, {"auto_cicd": True})
+    background_tasks.add_task(deploy_app_with_db, final_url, app_name, app_domain, db_type, saved_backup_path)
+    return {"status": "success", "message": f"Đã tiếp nhận yêu cầu cấp phát {db_type.upper()} cho {app_name}."}
+
+# --- 3. DEPLOY FULLSTACK CÙNG LÚC 2 REPO (FE + BE + DB) ---
+@app.post("/api/deploy-fullstack")
+async def trigger_deploy_fullstack(
+    background_tasks: BackgroundTasks,
+    app_name: str = Form(...),
+    be_repo_url: str = Form(...),
+    be_domain: str = Form(...),
+    fe_repo_url: str = Form(...),
+    fe_domain: str = Form(...),
+    db_type: str = Form(...),
+    github_token: Optional[str] = Form(None),
+    backup_file: Optional[UploadFile] = File(None)
+):
+    final_be_url = prepare_repo_url(be_repo_url, github_token)
+    final_fe_url = prepare_repo_url(fe_repo_url, github_token)
+    
+    saved_backup_path = ""
+    if backup_file and backup_file.filename:
+        safe_filename = os.path.basename(backup_file.filename)
+        saved_backup_path = f"{BACKUP_DIR}/{app_name}_{safe_filename}"
+        try:
+            with open(saved_backup_path, "wb") as buffer:
+                shutil.copyfileobj(backup_file.file, buffer)
+        except Exception as e:
+            return {"status": "error", "message": f"Lỗi lưu file backup: {str(e)}"}
+        finally:
+            backup_file.file.close()
+
+    with open(f"{LOG_DIR}/{app_name}.log", "w", encoding="utf-8") as f:
+        f.write(f"🚀 [INIT] Đã tiếp nhận yêu cầu triển khai Fullstack (2 Repos): {app_name}\n"
+                f"   - Frontend: {fe_domain} ({fe_repo_url})\n"
+                f"   - Backend : {be_domain} ({be_repo_url})\n"
+                f"   - Database: {db_type.upper()}\n"
+                f"---------------------------------------------------\n")
+
+    save_app_config(app_name, {"auto_cicd": True})
+    background_tasks.add_task(
+        deploy_fullstack_app,
+        app_name, final_be_url, be_domain, final_fe_url, fe_domain, db_type, saved_backup_path
+    )
+    return {
+        "status": "success",
+        "message": f"Bắt đầu khởi chạy cụm Fullstack {app_name} (FE: {fe_domain} | BE: {be_domain})."
+    }
+
+# --- 4. DEPLOY MONOREPO OPEN SOURCE (1 REPO CHỨA CẢ FE + BE, KHÔNG CẦN FILE .SQL) ---
+@app.post("/api/deploy-monorepo")
+async def trigger_deploy_monorepo(req: MonorepoDeployRequest, background_tasks: BackgroundTasks):
+    final_url = prepare_repo_url(req.repo_url, req.github_token)
+    
+    with open(f"{LOG_DIR}/{req.app_name}.log", "w", encoding="utf-8") as f:
+        f.write(f"🚀 [INIT] Tiếp nhận Monorepo Open Source: {req.app_name}\n"
+                f"   - Repository : {req.repo_url}\n"
+                f"   - Backend API: {req.be_domain}\n"
+                f"   - Frontend UI: {req.fe_domain if req.fe_domain else 'None'}\n"
+                f"   - Database   : {req.db_type.upper()} (Auto-Schema / Empty)\n"
+                f"---------------------------------------------------\n")
+
+    save_app_config(req.app_name, {"auto_cicd": True})
+    background_tasks.add_task(
+        deploy_monorepo_app,
+        final_url, req.app_name, req.be_domain, req.fe_domain or "", req.db_type
+    )
+    return {
+        "status": "success",
+        "message": f"Đã tiếp nhận Monorepo {req.app_name}. Hệ thống đang tự động nhận diện và triển khai."
+    }
+
+# --- 5. XÓA ỨNG DỤNG VÀ DỌN DẸP TÀI NGUYÊN ---
+@app.delete("/api/apps/{app_name}")
+async def remove_app(app_name: str, background_tasks: BackgroundTasks):
+    background_tasks.add_task(delete_app_db_resources, app_name)
+    background_tasks.add_task(delete_app, app_name)
+    return {"status": "success", "message": f"Đang tiến hành dọn dẹp hệ thống của {app_name}."}
+
+# --- 6. XEM LOG BUILD & DEPLOY (POLLING KHÔNG 404) ---
+@app.get("/api/logs/{app_name}")
+async def get_build_logs(app_name: str):
+    log_path = f"{LOG_DIR}/{app_name}.log"
+    if not os.path.exists(log_path):
+        return {
+            "status": "waiting",
+            "logs": f"⏳ [INIT] Hệ thống đang chuẩn bị môi trường cho {app_name}..."
+        }
+    try:
+        with open(log_path, "r", encoding="utf-8") as f:
+            content = f.read()
+        return {
+            "status": "success",
+            "logs": content if content.strip() else f"⏳ Đang khởi tạo tiến trình cho {app_name}..."
+        }
+    except Exception as e:
+        return {"status": "waiting", "logs": f"⏳ Đang cập nhật log... ({str(e)})"}
+
+# --- 7. XEM LOG RUNTIME PODS TRÊN K3S ---
+@app.get("/api/pod-logs/{app_name}")
+async def get_pod_runtime_logs(app_name: str, component: Optional[str] = Query(None), lines: int = Query(200, ge=10, le=2000)):
+    try:
+        target_name = f"{app_name}-{component}" if component in ["be", "fe"] else app_name
+        check_cmd = f"kubectl get pods -n {K8S_NAMESPACE} -l 'app in ({target_name}, {app_name})' -o jsonpath='{{.items[*].metadata.name}}'"
+        pod_names = subprocess.check_output(check_cmd, shell=True, text=True).strip()
+        
+        if not pod_names:
+            return {"status": "warning", "logs": "Chưa tìm thấy Pod đang chạy cho ứng dụng này."}
+        
+        target_pod = pod_names.split()[0]
+        result = subprocess.run(["kubectl", "logs", target_pod, "-n", K8S_NAMESPACE, f"--tail={lines}"], capture_output=True, text=True)
+        pod_output = result.stdout
+        
+        if not pod_output and result.stderr:
+            prev_result = subprocess.run(["kubectl", "logs", target_pod, "-n", K8S_NAMESPACE, "--previous", f"--tail={lines}"], capture_output=True, text=True)
+            pod_output = f"[LOG TỪ LẦN CRASH TRƯỚC ĐÓ]:\n{prev_result.stdout}" if prev_result.stdout else result.stderr
+
+        return {
+            "status": "success",
+            "pod_name": target_pod,
+            "logs": pod_output if pod_output else "Container đang chạy nhưng chưa sinh thêm log mới."
+        }
+    except Exception as e:
+        return {"status": "error", "message": f"Không thể lấy log: {str(e)}"}
+
+# --- 8. CI/CD CONFIG VÀ MANUAL REDEPLOY ---
+@app.get("/api/apps/{app_name}/config")
+async def read_config(app_name: str):
+    return {"status": "success", "data": get_app_config(app_name)}
+
+@app.post("/api/apps/{app_name}/config")
+async def update_config(app_name: str, req: AppConfigUpdate):
+    save_app_config(app_name, {"auto_cicd": req.auto_cicd})
+    return {"status": "success", "message": f"Đã {'bật' if req.auto_cicd else 'tắt'} Auto CI/CD cho {app_name}"}
+
+@app.post("/api/apps/{app_name}/redeploy")
+async def manual_redeploy(app_name: str, background_tasks: BackgroundTasks):
+    background_tasks.add_task(redeploy_app, app_name, "main")
+    return {"status": "success", "message": f"Đã ra lệnh Deploy lại {app_name}."}
+
+# --- 9. WEBHOOK GITHUB CHO CI/CD TỰ ĐỘNG ---
+@app.post("/api/webhooks/github/{app_name}")
+async def github_webhook(app_name: str, request: Request, background_tasks: BackgroundTasks):
+    try:
+        payload = await request.json()
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid JSON payload")
+    
+    app_config = get_app_config(app_name)
+    if not app_config.get("auto_cicd", True):
+        return {"status": "ignored", "message": "Auto CI/CD đang tắt."}
+
+    if "commits" in payload or "ref" in payload:
+        branch = payload.get("ref", "refs/heads/main").split("/")[-1]
+        background_tasks.add_task(redeploy_app, app_name, branch)
+        return {"status": "success", "message": f"CI/CD Pipeline đã kích hoạt cho [{app_name}]"}
+        
+    return {"status": "ignored", "message": "Không có push code mới."}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8080, reload=True)

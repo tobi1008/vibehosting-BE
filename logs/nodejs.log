@@ -1,0 +1,246 @@
+=== [BẮT ĐẦU DEPLOY] nodejs ===
+[1] Đang clone repo: https://github.com/tobi1008/vibecode.git...
+> Chạy lệnh: git clone https://github.com/tobi1008/vibecode.git /opt/vibe-hosting/workspaces/nodejs
+[2] Đang quét cấu trúc mã nguồn...
+> Chạy lệnh: tree -I node_modules|.git|venv /opt/vibe-hosting/workspaces/nodejs
+/opt/vibe-hosting/workspaces/nodejs
+├── AGENTS.md
+├── CLAUDE.md
+├── docker-compose.yml
+├── Dockerfile
+├── eslint.config.mjs
+├── next.config.ts
+├── package.json
+├── package-lock.json
+├── postcss.config.mjs
+├── public
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── README.md
+├── src
+│   └── app
+│       ├── favicon.ico
+│       ├── globals.css
+│       ├── layout.tsx
+│       └── page.tsx
+├── tsconfig.json
+└── vibecode-deploy.zip
+
+3 directories, 21 files
+
+
+[3] (Lần thử 1/3) Bắt đầu gọi AI phân tích mã nguồn...
+⏳ Đang gửi yêu cầu tới Model: [stepfun/step-3.7-flash:free]...
+⚠️ Model [stepfun/step-3.7-flash:free] bị giới hạn Rate Limit (429). Chuyển sang model dự phòng...
+⏳ Đang gửi yêu cầu tới Model: [poolside/laguna-s-2.1:free]...
+✅ Model [poolside/laguna-s-2.1:free] phản hồi thành công!
+[4] Đang lưu cấu hình K3s & Nixpacks...
+[5] Bắt đầu build Docker image (tobi1008/nodejs:latest)...
+> Chạy lệnh: nixpacks build . --name tobi1008/nodejs:latest
+
+╔════════ Nixpacks v1.41.0 ═══════╗
+║ setup      │ nodejs_20, npm-9_x ║
+║─────────────────────────────────║
+║ install    │ npm ci             ║
+║─────────────────────────────────║
+║ build      │ npm run build      ║
+║─────────────────────────────────║
+║ start      │ npm start          ║
+╚═════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/nodejs:latest
+
+[6] Đang đẩy Image lên Docker Hub (tobi1008)...
+> Chạy lệnh: docker push tobi1008/nodejs:latest
+The push refers to repository [docker.io/tobi1008/nodejs]
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+65d98f37e0ec: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+65d98f37e0ec: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+65d98f37e0ec: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+ae28d8886667: Waiting
+65d98f37e0ec: Pushed
+44136fa355b3: Pushed
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+866b26ac4e47: Pushed
+ae28d8886667: Pushed
+0909bdfc568c: Waiting
+61aa9424035a: Waiting
+0909bdfc568c: Waiting
+61aa9424035a: Waiting
+0909bdfc568c: Waiting
+61aa9424035a: Waiting
+0909bdfc568c: Waiting
+61aa9424035a: Waiting
+0909bdfc568c: Waiting
+61aa9424035a: Waiting
+0909bdfc568c: Waiting
+61aa9424035a: Waiting
+342aa955e84b: Waiting
+0909bdfc568c: Pushed
+342aa955e84b: Waiting
+342aa955e84b: Waiting
+342aa955e84b: Waiting
+342aa955e84b: Waiting
+342aa955e84b: Waiting
+96dc717e366b: Waiting
+342aa955e84b: Pushed
+96dc717e366b: Waiting
+96dc717e366b: Waiting
+96dc717e366b: Waiting
+96dc717e366b: Waiting
+96dc717e366b: Waiting
+96dc717e366b: Waiting
+4f4fb700ef54: Waiting
+2726e237d1a3: Pushed
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+231da02cb7ba: Waiting
+4f4fb700ef54: Pushed
+231da02cb7ba: Waiting
+231da02cb7ba: Waiting
+231da02cb7ba: Waiting
+231da02cb7ba: Waiting
+231da02cb7ba: Waiting
+7962e2b983fd: Pushed
+60c2227d09b3: Waiting
+60c2227d09b3: Waiting
+60c2227d09b3: Waiting
+60c2227d09b3: Waiting
+60c2227d09b3: Waiting
+60c2227d09b3: Waiting
+4f4fb700ef54: Pushed
+231da02cb7ba: Pushed
+60c2227d09b3: Pushed
+61aa9424035a: Pushed
+b65af0a51d86: Pushed
+96dc717e366b: Pushed
+latest: digest: sha256:2d8244f92c518c727247f86c690c365de249c16e302cac2944293353c942d865 size: 856
+
+[7] Yêu cầu K3s triển khai ứng dụng (Kèm tên miền & SSL)...
+> Chạy lệnh: kubectl apply -f k8s/deployment.yaml
+deployment.apps/nodejs created
+
+> Chạy lệnh: kubectl apply -f k8s/service.yaml
+service/nodejs created
+
+> Chạy lệnh: kubectl apply -f k8s/ingress.yaml
+ingress.networking.k8s.io/nodejs created
+
+=== [HOÀN TẤT] Ứng dụng đã online tại https://nodejs.vibe.quyenlt.com ===
+DONE
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+⚠️ Model [stepfun/step-3.7-flash:free] gặp Rate Limit 429. Đang chuyển sang model tiếp theo...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [poolside/laguna-s-2.1:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [upstage/solar-pro4:free]...

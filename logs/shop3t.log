@@ -1,0 +1,2611 @@
+🚀 [INIT] Đã tiếp nhận yêu cầu triển khai Fullstack (2 Repos): shop3t
+   - Frontend: shop3t.vibe.quyenlt.com (https://github.com/ThienDuong2909/TTTN_3TShop_FE)
+   - Backend : api-shop3t.vibe.quyenlt.com (https://github.com/ThienDuong2909/TTTN_3TShop_BE_CL)
+   - Database: MYSQL
+---------------------------------------------------
+
+=== [BẮT ĐẦU TRIỂN KHAI FULLSTACK] shop3t ===
+
+--- BƯỚC 1: KHỞI TẠO DATABASE CHUNG (MYSQL) ---
+> Chạy lệnh: kubectl apply -f /opt/vibe-hosting/workspaces/shop3t-be/k8s/db.yaml
+persistentvolumeclaim/shop3t-db-pvc created
+statefulset.apps/shop3t-db created
+service/shop3t-db-svc created
+
+
+[DB Backup] Đang nạp dữ liệu từ file (shop3t_thienduong_3tshop_tttn.sql) vào MYSQL...
+   -> Nạp dữ liệu backup thành công 100%!
+
+--- BƯỚC 2: TRIỂN KHAI BACKEND (api-shop3t.vibe.quyenlt.com) ---
+> Chạy lệnh: rm -rf /opt/vibe-hosting/workspaces/shop3t-be
+> Chạy lệnh: git clone https://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@github.com/ThienDuong2909/TTTN_3TShop_BE_CL /opt/vibe-hosting/workspaces/shop3t-be
+[AI] Đang phân tích mã nguồn Backend và cấu hình kết nối DB...
+⏳ Đang kết nối Model: [stepfun/step-3.7-flash:free]...
+✅ Model [stepfun/step-3.7-flash:free] xử lý thành công!
+   -> Cổng hoạt động của Backend: 8080
+   -> [Auto-Fix] Chuẩn hóa ESM sang CommonJS tại: formatter.js
+Đang build Backend Image (tobi1008/shop3t-be:latest)...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-be:latest
+
+╔════════ Nixpacks v1.41.0 ═══════╗
+║ setup      │ nodejs_18, npm-9_x ║
+║─────────────────────────────────║
+║ install    │ npm ci             ║
+║─────────────────────────────────║
+║ start      │ npm run start      ║
+╚═════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-be:latest
+
+> Chạy lệnh: docker push tobi1008/shop3t-be:latest
+The push refers to repository [docker.io/tobi1008/shop3t-be]
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+f5e29f381356: Waiting
+7962e2b983fd: Waiting
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+7962e2b983fd: Waiting
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+f5e29f381356: Waiting
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+f5e29f381356: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+7962e2b983fd: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+7962e2b983fd: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+f5e29f381356: Pushed
+44136fa355b3: Pushed
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+ae28d8886667: Waiting
+ae28d8886667: Waiting
+ae28d8886667: Waiting
+ae28d8886667: Waiting
+c97cc5131b74: Waiting
+866b26ac4e47: Pushed
+c97cc5131b74: Waiting
+c97cc5131b74: Waiting
+c97cc5131b74: Waiting
+c97cc5131b74: Waiting
+c97cc5131b74: Waiting
+2d2e586387f8: Waiting
+ae28d8886667: Pushed
+c97cc5131b74: Waiting
+2d2e586387f8: Waiting
+c97cc5131b74: Waiting
+2d2e586387f8: Waiting
+2d2e586387f8: Waiting
+c97cc5131b74: Waiting
+c97cc5131b74: Waiting
+2d2e586387f8: Waiting
+2d2e586387f8: Waiting
+eae1001bbd73: Waiting
+c97cc5131b74: Mounted from tobi1008/tttn-3tshop-fe-be
+eae1001bbd73: Waiting
+9040c4a07e7b: Waiting
+2d2e586387f8: Mounted from tobi1008/tttn-3tshop-fe-be
+9040c4a07e7b: Waiting
+eae1001bbd73: Waiting
+9040c4a07e7b: Waiting
+eae1001bbd73: Waiting
+eae1001bbd73: Waiting
+9040c4a07e7b: Waiting
+eae1001bbd73: Waiting
+9040c4a07e7b: Waiting
+9040c4a07e7b: Waiting
+2726e237d1a3: Pushed
+23b53173579f: Waiting
+23b53173579f: Waiting
+23b53173579f: Waiting
+23b53173579f: Waiting
+23b53173579f: Waiting
+23b53173579f: Waiting
+23b53173579f: Waiting
+23b53173579f: Pushed
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+eae1001bbd73: Pushed
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+7962e2b983fd: Pushed
+4f4fb700ef54: Pushed
+9040c4a07e7b: Pushed
+b65af0a51d86: Pushed
+latest: digest: sha256:197a6199bbe229150cb48963afcda6b6c0df19305d424a4c4ec912c5b79355d4 size: 856
+
+> Chạy lệnh: kubectl apply -f /opt/vibe-hosting/workspaces/shop3t-be/k8s/deployment.yaml
+deployment.apps/shop3t-be created
+
+> Chạy lệnh: kubectl apply -f /opt/vibe-hosting/workspaces/shop3t-be/k8s/service.yaml
+service/shop3t-be-svc created
+
+> Chạy lệnh: kubectl apply -f /opt/vibe-hosting/workspaces/shop3t-be/k8s/ingress.yaml
+ingress.networking.k8s.io/shop3t-be-ingress created
+
+✅ Backend đã online tại: https://api-shop3t.vibe.quyenlt.com
+
+--- BƯỚC 3: TRIỂN KHAI FRONTEND (shop3t.vibe.quyenlt.com) ---
+> Chạy lệnh: git clone https://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@github.com/ThienDuong2909/TTTN_3TShop_FE /opt/vibe-hosting/workspaces/shop3t-fe
+[FE Linker] Đang liên kết Frontend tới Backend API (https://api-shop3t.vibe.quyenlt.com)...
+   -> Thay thế hardcode localhost trong: usePurchaseOrderData.ts
+   -> Cổng hoạt động của Frontend: 3000
+Đang build Frontend Image (tobi1008/shop3t-fe:latest)...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-fe:latest
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ nodejs_18, npm-9_x                                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ caddy      │ pkgs: caddy                                                     ║
+║            │ cmds: caddy fmt --overwrite /assets/Caddyfile                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ npm ci                                                          ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ build      │ npm run build                                                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ exec caddy run --config /assets/Caddyfile --adapter caddyfile   ║
+║            │ 2>&1                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-fe:latest
+
+> Chạy lệnh: docker push tobi1008/shop3t-fe:latest
+The push refers to repository [docker.io/tobi1008/shop3t-fe]
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f4380bca6011: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f4380bca6011: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+f4380bca6011: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+f4380bca6011: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+f4380bca6011: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f4380bca6011: Waiting
+f4380bca6011: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f4380bca6011: Waiting
+44136fa355b3: Waiting
+f4380bca6011: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f4380bca6011: Waiting
+f4380bca6011: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f4380bca6011: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f4380bca6011: Waiting
+44136fa355b3: Waiting
+f4380bca6011: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f4380bca6011: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f4380bca6011: Waiting
+44136fa355b3: Waiting
+f4380bca6011: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f4380bca6011: Waiting
+f4380bca6011: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f4380bca6011: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f4380bca6011: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+f4380bca6011: Pushed
+866b26ac4e47: Waiting
+44136fa355b3: Pushed
+b65af0a51d86: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+ae28d8886667: Waiting
+8a724f054f7b: Waiting
+866b26ac4e47: Pushed
+ffbbea5c53ef: Waiting
+ae28d8886667: Pushed
+8a724f054f7b: Waiting
+8a724f054f7b: Waiting
+ffbbea5c53ef: Waiting
+ffbbea5c53ef: Waiting
+8a724f054f7b: Waiting
+ffbbea5c53ef: Waiting
+8a724f054f7b: Waiting
+8a724f054f7b: Waiting
+ffbbea5c53ef: Waiting
+8a724f054f7b: Waiting
+ffbbea5c53ef: Waiting
+ffbbea5c53ef: Waiting
+8a724f054f7b: Waiting
+8a724f054f7b: Waiting
+ffbbea5c53ef: Waiting
+ffbbea5c53ef: Waiting
+8a724f054f7b: Waiting
+ffbbea5c53ef: Mounted from tobi1008/tttn-3tshop-fe-fe
+9618af2b04ca: Waiting
+8a724f054f7b: Mounted from tobi1008/tttn-3tshop-fe-fe
+cb82de013151: Waiting
+cb82de013151: Waiting
+9618af2b04ca: Waiting
+cb82de013151: Waiting
+9618af2b04ca: Waiting
+9618af2b04ca: Waiting
+cb82de013151: Waiting
+9618af2b04ca: Waiting
+cb82de013151: Waiting
+9618af2b04ca: Waiting
+cb82de013151: Waiting
+12bdadefb1bf: Waiting
+9618af2b04ca: Mounted from tobi1008/tttn-3tshop-fe-fe
+b2b9e6ee5c45: Waiting
+cb82de013151: Mounted from tobi1008/tttn-3tshop-fe-fe
+b2b9e6ee5c45: Waiting
+12bdadefb1bf: Waiting
+12bdadefb1bf: Waiting
+b2b9e6ee5c45: Waiting
+b2b9e6ee5c45: Waiting
+12bdadefb1bf: Waiting
+b2b9e6ee5c45: Waiting
+12bdadefb1bf: Waiting
+29e15c693046: Waiting
+b2b9e6ee5c45: Waiting
+12bdadefb1bf: Mounted from tobi1008/tttn-3tshop-fe-fe
+29e15c693046: Waiting
+29e15c693046: Waiting
+29e15c693046: Waiting
+29e15c693046: Waiting
+29e15c693046: Waiting
+4f4fb700ef54: Waiting
+29e15c693046: Pushed
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Pushed
+d4e1af9286da: Waiting
+d4e1af9286da: Waiting
+431bfaeec7aa: Waiting
+4f4fb700ef54: Pushed
+d4e1af9286da: Waiting
+b2b9e6ee5c45: Pushed
+431bfaeec7aa: Waiting
+d4e1af9286da: Waiting
+431bfaeec7aa: Waiting
+d4e1af9286da: Waiting
+431bfaeec7aa: Waiting
+d4e1af9286da: Waiting
+431bfaeec7aa: Waiting
+431bfaeec7aa: Waiting
+11454ae28fea: Waiting
+7962e2b983fd: Pushed
+11454ae28fea: Waiting
+11454ae28fea: Waiting
+11454ae28fea: Waiting
+11454ae28fea: Waiting
+11454ae28fea: Waiting
+11454ae28fea: Waiting
+431bfaeec7aa: Pushed
+4f4fb700ef54: Pushed
+11454ae28fea: Pushed
+2726e237d1a3: Pushed
+d4e1af9286da: Pushed
+b65af0a51d86: Pushed
+latest: digest: sha256:42407a2440605b9790da4970a9d26899ac2d0067c401bc5f09f2ce936176de96 size: 856
+
+> Chạy lệnh: kubectl apply -f /opt/vibe-hosting/workspaces/shop3t-fe/k8s/deployment.yaml
+deployment.apps/shop3t-fe created
+
+> Chạy lệnh: kubectl apply -f /opt/vibe-hosting/workspaces/shop3t-fe/k8s/service.yaml
+service/shop3t-fe-svc created
+
+> Chạy lệnh: kubectl apply -f /opt/vibe-hosting/workspaces/shop3t-fe/k8s/ingress.yaml
+ingress.networking.k8s.io/shop3t-fe-ingress created
+
+✅ Frontend đã online tại: https://shop3t.vibe.quyenlt.com
+
+=== HOÀN TẤT TRIỂN KHAI CỤM FULLSTACK ===
+Frontend: https://shop3t.vibe.quyenlt.com
+Backend : https://api-shop3t.vibe.quyenlt.com
+DONE
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+⚡ [Hermes Auto-heal] Bắt đầu Rebuild cho component [BE]...
+
+=== [BẮT ĐẦU CI/CD REDEPLOY] shop3t (Nhánh: main | Component: BE | Pull Git: False) ===
+🔍 Phát hiện cấu trúc Fullstack 2 Repositories riêng biệt.
+
+🚀 [CI/CD - BACKEND] Bắt đầu quy trình đóng gói tại: /opt/vibe-hosting/workspaces/shop3t-be
+   📌 Nguồn mã nguồn ưu tiên: https://github.com/thienduong2909/tttn_3tshop_be_cl
+   [1] [AUTO-HEAL MODE] Giữ nguyên mã nguồn sửa đổi cục bộ, bỏ qua pull git.
+   🔍 [AUTO-PATCH] Quét và chuẩn hóa CommonJS/ESM cho backend...
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-be:1789517971...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-be:1789517971...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-be:1789517971 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════ Nixpacks v1.41.0 ═════════════╗
+║ setup      │ nodejs_20, npm-9_x             ║
+║─────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps ║
+║─────────────────────────────────────────────║
+║ start      │ npm run start                  ║
+╚═════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-be:1789517971
+
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-be:1789517971...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-be:1789517971...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-be:1789517971 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════ Nixpacks v1.41.0 ═════════════╗
+║ setup      │ nodejs_20, npm-9_x             ║
+║─────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps ║
+║─────────────────────────────────────────────║
+║ start      │ npm run start                  ║
+╚═════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-be:1789517971
+
+   [3] Đang đẩy Image lên Docker Hub...
+> Chạy lệnh: docker push tobi1008/shop3t-be:1789517971
+The push refers to repository [docker.io/tobi1008/shop3t-be]
+9540a746d7a4: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+9540a746d7a4: Waiting
+44136fa355b3: Waiting
+9540a746d7a4: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+9540a746d7a4: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+9540a746d7a4: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+9540a746d7a4: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+9540a746d7a4: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+9540a746d7a4: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+9540a746d7a4: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+9540a746d7a4: Waiting
+9540a746d7a4: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+9540a746d7a4: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+9540a746d7a4: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+9540a746d7a4: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+9540a746d7a4: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+9540a746d7a4: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Layer already exists
+2726e237d1a3: Layer already exists
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+9540a746d7a4: Waiting
+44136fa355b3: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+9540a746d7a4: Waiting
+44136fa355b3: Already exists
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+9540a746d7a4: Waiting
+ae28d8886667: Waiting
+866b26ac4e47: Waiting
+9540a746d7a4: Waiting
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+9540a746d7a4: Waiting
+2ad41e34a622: Waiting
+ae28d8886667: Layer already exists
+27484d38acca: Waiting
+b65af0a51d86: Layer already exists
+866b26ac4e47: Layer already exists
+8f201e289db9: Waiting
+9540a746d7a4: Waiting
+2ad41e34a622: Waiting
+27484d38acca: Waiting
+8f201e289db9: Waiting
+8f201e289db9: Waiting
+9540a746d7a4: Waiting
+2ad41e34a622: Waiting
+27484d38acca: Waiting
+27484d38acca: Waiting
+8f201e289db9: Waiting
+2ad41e34a622: Waiting
+8f201e289db9: Waiting
+2ad41e34a622: Waiting
+27484d38acca: Waiting
+2ad41e34a622: Waiting
+27484d38acca: Waiting
+8f201e289db9: Waiting
+2ad41e34a622: Waiting
+27484d38acca: Waiting
+8f201e289db9: Waiting
+2ad41e34a622: Waiting
+27484d38acca: Waiting
+2ad41e34a622: Waiting
+27484d38acca: Waiting
+2ad41e34a622: Waiting
+27484d38acca: Waiting
+2ad41e34a622: Mounted from tobi1008/javascripts
+2dc250839c80: Waiting
+27484d38acca: Waiting
+73153a733095: Waiting
+2dc250839c80: Waiting
+27484d38acca: Waiting
+73153a733095: Waiting
+2dc250839c80: Waiting
+27484d38acca: Waiting
+89d927795136: Waiting
+9540a746d7a4: Pushed
+27484d38acca: Waiting
+89d927795136: Waiting
+73153a733095: Waiting
+2dc250839c80: Waiting
+89d927795136: Waiting
+73153a733095: Waiting
+2dc250839c80: Waiting
+27484d38acca: Mounted from tobi1008/javascripts
+73153a733095: Waiting
+2dc250839c80: Waiting
+89d927795136: Waiting
+2dc250839c80: Waiting
+89d927795136: Waiting
+73153a733095: Waiting
+73153a733095: Waiting
+89d927795136: Waiting
+89d927795136: Waiting
+73153a733095: Pushed
+89d927795136: Pushed
+8f201e289db9: Pushed
+2dc250839c80: Pushed
+1789517971: digest: sha256:3f2e62fc1774f84341e8ba56f5e9ed8f31859814bf11cde48af7245d092869c4 size: 856
+
+   [4] Cập nhật phiên bản Deployment 'shop3t-be' trên K3s...
+> Chạy lệnh: kubectl set image deployment/shop3t-be shop3t-be=tobi1008/shop3t-be:1789517971 -n default
+deployment.apps/shop3t-be image updated
+
+✅ [CI/CD - BACKEND] Triển khai thành công bản dựng: 1789517971 từ kho https://github.com/thienduong2909/tttn_3tshop_be_cl!
+=== [HOÀN TẤT CI/CD FULLSTACK] shop3t ===
+DONE
+⚡ [Hermes Auto-heal] Bắt đầu Rebuild cho component [FE]...
+
+=== [BẮT ĐẦU CI/CD REDEPLOY] shop3t (Nhánh: main | Component: FE | Pull Git: False) ===
+🔍 Phát hiện cấu trúc Fullstack 2 Repositories riêng biệt.
+
+🚀 [CI/CD - FRONTEND] Bắt đầu quy trình đóng gói tại: /opt/vibe-hosting/workspaces/shop3t-fe
+   📌 Nguồn mã nguồn ưu tiên: https://github.com/thienduong2909/tttn_3tshop_fe
+   [1] [AUTO-HEAL MODE] Giữ nguyên mã nguồn sửa đổi cục bộ, bỏ qua pull git.
+   🔗 [FE LINKER] Đảm bảo cấu hình Backend API (https://api-shop3t.vibe.quyenlt.com)...
+[FE Linker] Đang liên kết Frontend tới Backend API (https://api-shop3t.vibe.quyenlt.com)...
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-fe:1789518016...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-fe:1789518016...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-fe:1789518016 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ nodejs_20, npm-9_x                                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ caddy      │ pkgs: caddy                                                     ║
+║            │ cmds: caddy fmt --overwrite /assets/Caddyfile                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps                                  ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ build      │ npm run build                                                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ exec caddy run --config /assets/Caddyfile --adapter caddyfile   ║
+║            │ 2>&1                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-fe:1789518016
+
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-fe:1789518016...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-fe:1789518016...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-fe:1789518016 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ nodejs_20, npm-9_x                                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ caddy      │ pkgs: caddy                                                     ║
+║            │ cmds: caddy fmt --overwrite /assets/Caddyfile                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps                                  ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ build      │ npm run build                                                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ exec caddy run --config /assets/Caddyfile --adapter caddyfile   ║
+║            │ 2>&1                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-fe:1789518016
+
+   [3] Đang đẩy Image lên Docker Hub...
+> Chạy lệnh: docker push tobi1008/shop3t-fe:1789518016
+The push refers to repository [docker.io/tobi1008/shop3t-fe]
+bf2d6ae05d11: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bf2d6ae05d11: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bf2d6ae05d11: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bf2d6ae05d11: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bf2d6ae05d11: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bf2d6ae05d11: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bf2d6ae05d11: Waiting
+bf2d6ae05d11: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bf2d6ae05d11: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bf2d6ae05d11: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bf2d6ae05d11: Waiting
+44136fa355b3: Waiting
+bf2d6ae05d11: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bf2d6ae05d11: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bf2d6ae05d11: Waiting
+bf2d6ae05d11: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bf2d6ae05d11: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Layer already exists
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+bf2d6ae05d11: Waiting
+44136fa355b3: Waiting
+bf2d6ae05d11: Waiting
+44136fa355b3: Waiting
+866b26ac4e47: Waiting
+2726e237d1a3: Layer already exists
+b65af0a51d86: Waiting
+b65af0a51d86: Waiting
+bf2d6ae05d11: Waiting
+44136fa355b3: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+bf2d6ae05d11: Waiting
+44136fa355b3: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Layer already exists
+8a724f054f7b: Waiting
+ffbbea5c53ef: Waiting
+bf2d6ae05d11: Waiting
+44136fa355b3: Already exists
+866b26ac4e47: Layer already exists
+ae28d8886667: Waiting
+ae28d8886667: Waiting
+8a724f054f7b: Waiting
+ffbbea5c53ef: Waiting
+434e369151cf: Waiting
+8a724f054f7b: Layer already exists
+ffbbea5c53ef: Layer already exists
+a0b0e2b48840: Waiting
+2521d71157b3: Waiting
+ae28d8886667: Layer already exists
+a0b0e2b48840: Waiting
+2521d71157b3: Waiting
+434e369151cf: Waiting
+434e369151cf: Waiting
+a0b0e2b48840: Waiting
+2521d71157b3: Waiting
+434e369151cf: Waiting
+a0b0e2b48840: Waiting
+2521d71157b3: Waiting
+a0b0e2b48840: Waiting
+2521d71157b3: Waiting
+434e369151cf: Waiting
+434e369151cf: Waiting
+a0b0e2b48840: Waiting
+2521d71157b3: Waiting
+434e369151cf: Waiting
+a7d7c03acb5a: Waiting
+bf2d6ae05d11: Pushed
+a7d7c03acb5a: Waiting
+a7d7c03acb5a: Waiting
+bde55080b678: Waiting
+bde55080b678: Waiting
+a7d7c03acb5a: Waiting
+bde55080b678: Waiting
+a7d7c03acb5a: Waiting
+a7d7c03acb5a: Waiting
+bde55080b678: Waiting
+bde55080b678: Waiting
+bde55080b678: Waiting
+434e369151cf: Pushed
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4b09f691c3ac: Waiting
+4f4fb700ef54: Layer already exists
+4b09f691c3ac: Waiting
+4b09f691c3ac: Waiting
+4b09f691c3ac: Waiting
+4b09f691c3ac: Waiting
+4b09f691c3ac: Waiting
+bde55080b678: Pushed
+61298f0ca9b7: Waiting
+61298f0ca9b7: Waiting
+61298f0ca9b7: Waiting
+61298f0ca9b7: Waiting
+61298f0ca9b7: Waiting
+61298f0ca9b7: Waiting
+bdf7c56e5e4f: Waiting
+61298f0ca9b7: Pushed
+bdf7c56e5e4f: Waiting
+bdf7c56e5e4f: Waiting
+bdf7c56e5e4f: Waiting
+bdf7c56e5e4f: Waiting
+bdf7c56e5e4f: Waiting
+a7d7c03acb5a: Pushed
+21e34ef15dad: Waiting
+21e34ef15dad: Waiting
+a0b0e2b48840: Pushed
+4f4fb700ef54: Layer already exists
+21e34ef15dad: Waiting
+21e34ef15dad: Waiting
+21e34ef15dad: Waiting
+21e34ef15dad: Waiting
+bdf7c56e5e4f: Pushed
+21e34ef15dad: Pushed
+4b09f691c3ac: Pushed
+2521d71157b3: Pushed
+1789518016: digest: sha256:17fc5d21373a4488818bf3e988580c2c3f8ce63aec94b8e83a13054e078fb2f7 size: 856
+
+   [4] Cập nhật phiên bản Deployment 'shop3t-fe' trên K3s...
+> Chạy lệnh: kubectl set image deployment/shop3t-fe shop3t-fe=tobi1008/shop3t-fe:1789518016 -n default
+deployment.apps/shop3t-fe image updated
+
+✅ [CI/CD - FRONTEND] Triển khai thành công bản dựng: 1789518016 từ kho https://github.com/thienduong2909/tttn_3tshop_fe!
+=== [HOÀN TẤT CI/CD FULLSTACK] shop3t ===
+DONE
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+⚡ [Hermes Auto-heal] Bắt đầu Rebuild cho component [FE]...
+
+=== [BẮT ĐẦU CI/CD REDEPLOY] shop3t (Nhánh: main | Component: FE | Pull Git: False) ===
+🔍 Phát hiện cấu trúc Fullstack 2 Repositories riêng biệt.
+
+🚀 [CI/CD - FRONTEND] Bắt đầu quy trình đóng gói tại: /opt/vibe-hosting/workspaces/shop3t-fe
+   📌 Nguồn mã nguồn ưu tiên: https://github.com/thienduong2909/tttn_3tshop_fe
+   [1] [AUTO-HEAL MODE] Giữ nguyên mã nguồn sửa đổi cục bộ, bỏ qua pull git.
+   🔗 [FE LINKER] Đảm bảo cấu hình Backend API (https://api-shop3t.vibe.quyenlt.com)...
+[FE Linker] Đang liên kết Frontend tới Backend API (https://api-shop3t.vibe.quyenlt.com)...
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-fe:1789518378...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-fe:1789518378...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-fe:1789518378 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ nodejs_20, npm-9_x                                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ caddy      │ pkgs: caddy                                                     ║
+║            │ cmds: caddy fmt --overwrite /assets/Caddyfile                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps                                  ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ build      │ npm run build                                                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ exec caddy run --config /assets/Caddyfile --adapter caddyfile   ║
+║            │ 2>&1                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-fe:1789518378
+
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-fe:1789518378...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-fe:1789518378...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-fe:1789518378 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ nodejs_20, npm-9_x                                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ caddy      │ pkgs: caddy                                                     ║
+║            │ cmds: caddy fmt --overwrite /assets/Caddyfile                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps                                  ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ build      │ npm run build                                                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ exec caddy run --config /assets/Caddyfile --adapter caddyfile   ║
+║            │ 2>&1                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-fe:1789518378
+
+   [3] Đang đẩy Image lên Docker Hub...
+> Chạy lệnh: docker push tobi1008/shop3t-fe:1789518378
+The push refers to repository [docker.io/tobi1008/shop3t-fe]
+e8a2abf6eb06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e8a2abf6eb06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e8a2abf6eb06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e8a2abf6eb06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e8a2abf6eb06: Waiting
+e8a2abf6eb06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e8a2abf6eb06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e8a2abf6eb06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e8a2abf6eb06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e8a2abf6eb06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e8a2abf6eb06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e8a2abf6eb06: Waiting
+e8a2abf6eb06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e8a2abf6eb06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e8a2abf6eb06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Layer already exists
+2726e237d1a3: Layer already exists
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+e8a2abf6eb06: Waiting
+44136fa355b3: Waiting
+e8a2abf6eb06: Waiting
+44136fa355b3: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+8a724f054f7b: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+e8a2abf6eb06: Waiting
+44136fa355b3: Already exists
+ae28d8886667: Waiting
+ae28d8886667: Waiting
+8a724f054f7b: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+e8a2abf6eb06: Waiting
+866b26ac4e47: Waiting
+e8a2abf6eb06: Waiting
+ae28d8886667: Waiting
+8a724f054f7b: Waiting
+b65af0a51d86: Waiting
+ae28d8886667: Layer already exists
+8a724f054f7b: Layer already exists
+2521d71157b3: Waiting
+434e369151cf: Waiting
+e8a2abf6eb06: Waiting
+b65af0a51d86: Layer already exists
+866b26ac4e47: Layer already exists
+a0b0e2b48840: Waiting
+ffbbea5c53ef: Waiting
+a0b0e2b48840: Waiting
+ffbbea5c53ef: Waiting
+2521d71157b3: Waiting
+434e369151cf: Waiting
+e8a2abf6eb06: Waiting
+e8a2abf6eb06: Waiting
+a0b0e2b48840: Layer already exists
+ffbbea5c53ef: Layer already exists
+a7d7c03acb5a: Waiting
+bde55080b678: Waiting
+2521d71157b3: Waiting
+434e369151cf: Waiting
+2521d71157b3: Layer already exists
+434e369151cf: Layer already exists
+4b09f691c3ac: Waiting
+4f4fb700ef54: Waiting
+a7d7c03acb5a: Waiting
+bde55080b678: Waiting
+4f4fb700ef54: Waiting
+a7d7c03acb5a: Waiting
+bde55080b678: Waiting
+4b09f691c3ac: Waiting
+4f4fb700ef54: Layer already exists
+a7d7c03acb5a: Layer already exists
+bde55080b678: Layer already exists
+61298f0ca9b7: Waiting
+bdf7c56e5e4f: Waiting
+4b09f691c3ac: Layer already exists
+21e34ef15dad: Waiting
+61298f0ca9b7: Waiting
+bdf7c56e5e4f: Waiting
+21e34ef15dad: Waiting
+61298f0ca9b7: Layer already exists
+bdf7c56e5e4f: Layer already exists
+21e34ef15dad: Layer already exists
+e8a2abf6eb06: Pushed
+1789518378: digest: sha256:866de30fa038c6e3cc1243bdadffe166a80e1eed4955e25e9224dc6a2b5dcaf7 size: 856
+
+   [4] Cập nhật phiên bản Deployment 'shop3t-fe' trên K3s...
+> Chạy lệnh: kubectl set image deployment/shop3t-fe shop3t-fe=tobi1008/shop3t-fe:1789518378 -n default
+deployment.apps/shop3t-fe image updated
+
+✅ [CI/CD - FRONTEND] Triển khai thành công bản dựng: 1789518378 từ kho https://github.com/thienduong2909/tttn_3tshop_fe!
+=== [HOÀN TẤT CI/CD FULLSTACK] shop3t ===
+DONE
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+⚠️ Model [stepfun/step-3.7-flash:free] gặp Rate Limit 429. Đang chuyển sang model tiếp theo...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [poolside/laguna-s-2.1:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+⚡ [Hermes Auto-heal] Bắt đầu Rebuild cho component [FE]...
+
+=== [BẮT ĐẦU CI/CD REDEPLOY] shop3t (Nhánh: main | Component: FE | Pull Git: False) ===
+🔍 Phát hiện cấu trúc Fullstack 2 Repositories riêng biệt.
+
+🚀 [CI/CD - FRONTEND] Bắt đầu quy trình đóng gói tại: /opt/vibe-hosting/workspaces/shop3t-fe
+   📌 Nguồn mã nguồn ưu tiên: https://github.com/thienduong2909/tttn_3tshop_fe
+   [1] [AUTO-HEAL MODE] Giữ nguyên mã nguồn sửa đổi cục bộ, bỏ qua pull git.
+   🔗 [FE LINKER] Đảm bảo cấu hình Backend API (https://api-shop3t.vibe.quyenlt.com)...
+[FE Linker] Đang liên kết Frontend tới Backend API (https://api-shop3t.vibe.quyenlt.com)...
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-fe:1789518685...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-fe:1789518685...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-fe:1789518685 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ nodejs_20, npm-9_x                                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ caddy      │ pkgs: caddy                                                     ║
+║            │ cmds: caddy fmt --overwrite /assets/Caddyfile                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps                                  ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ build      │ npm run build                                                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ exec caddy run --config /assets/Caddyfile --adapter caddyfile   ║
+║            │ 2>&1                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-fe:1789518685
+
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-fe:1789518685...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-fe:1789518685...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-fe:1789518685 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ nodejs_20, npm-9_x                                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ caddy      │ pkgs: caddy                                                     ║
+║            │ cmds: caddy fmt --overwrite /assets/Caddyfile                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps                                  ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ build      │ npm run build                                                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ exec caddy run --config /assets/Caddyfile --adapter caddyfile   ║
+║            │ 2>&1                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-fe:1789518685
+
+   [3] Đang đẩy Image lên Docker Hub...
+> Chạy lệnh: docker push tobi1008/shop3t-fe:1789518685
+The push refers to repository [docker.io/tobi1008/shop3t-fe]
+adfd4dad9348: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+adfd4dad9348: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+adfd4dad9348: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+adfd4dad9348: Waiting
+adfd4dad9348: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+adfd4dad9348: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+adfd4dad9348: Waiting
+adfd4dad9348: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+adfd4dad9348: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+adfd4dad9348: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+adfd4dad9348: Waiting
+44136fa355b3: Waiting
+adfd4dad9348: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+adfd4dad9348: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+adfd4dad9348: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+adfd4dad9348: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+adfd4dad9348: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Layer already exists
+b65af0a51d86: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+b65af0a51d86: Waiting
+adfd4dad9348: Waiting
+adfd4dad9348: Waiting
+44136fa355b3: Already exists
+7962e2b983fd: Layer already exists
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+ae28d8886667: Waiting
+adfd4dad9348: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+ae28d8886667: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+ae28d8886667: Waiting
+adfd4dad9348: Waiting
+ae28d8886667: Layer already exists
+a0b0e2b48840: Waiting
+adfd4dad9348: Waiting
+8a724f054f7b: Waiting
+ffbbea5c53ef: Waiting
+866b26ac4e47: Layer already exists
+b65af0a51d86: Layer already exists
+a0b0e2b48840: Waiting
+adfd4dad9348: Waiting
+8a724f054f7b: Waiting
+ffbbea5c53ef: Waiting
+434e369151cf: Waiting
+a0b0e2b48840: Waiting
+adfd4dad9348: Waiting
+8a724f054f7b: Layer already exists
+ffbbea5c53ef: Layer already exists
+2521d71157b3: Waiting
+434e369151cf: Waiting
+a0b0e2b48840: Layer already exists
+fd96b9edcd8b: Waiting
+2521d71157b3: Waiting
+434e369151cf: Waiting
+fd96b9edcd8b: Waiting
+2521d71157b3: Waiting
+4f4fb700ef54: Waiting
+fd96b9edcd8b: Waiting
+e0e34af5f86a: Waiting
+2521d71157b3: Layer already exists
+434e369151cf: Layer already exists
+fd96b9edcd8b: Waiting
+e0e34af5f86a: Waiting
+4f4fb700ef54: Waiting
+fd96b9edcd8b: Waiting
+e0e34af5f86a: Waiting
+30945375708a: Waiting
+4f4fb700ef54: Layer already exists
+30945375708a: Waiting
+fd96b9edcd8b: Waiting
+e0e34af5f86a: Waiting
+e0e34af5f86a: Waiting
+30945375708a: Waiting
+e0e34af5f86a: Waiting
+30945375708a: Waiting
+30945375708a: Waiting
+30945375708a: Waiting
+bd35cdf0dd31: Waiting
+adfd4dad9348: Pushed
+30945375708a: Waiting
+bd35cdf0dd31: Waiting
+bd35cdf0dd31: Waiting
+bd35cdf0dd31: Waiting
+bd35cdf0dd31: Waiting
+bd35cdf0dd31: Waiting
+272664b21623: Waiting
+e0e34af5f86a: Pushed
+272664b21623: Waiting
+063d148cc0a7: Waiting
+272664b21623: Waiting
+063d148cc0a7: Waiting
+272664b21623: Waiting
+063d148cc0a7: Waiting
+272664b21623: Waiting
+063d148cc0a7: Waiting
+272664b21623: Waiting
+063d148cc0a7: Waiting
+063d148cc0a7: Waiting
+063d148cc0a7: Waiting
+bd35cdf0dd31: Pushed
+4f4fb700ef54: Layer already exists
+063d148cc0a7: Pushed
+fd96b9edcd8b: Pushed
+272664b21623: Pushed
+30945375708a: Pushed
+1789518685: digest: sha256:b5632cf324b1bd7736d4d2a547b5620e539c4029dd3a66404be3581c72afe857 size: 856
+
+   [4] Cập nhật phiên bản Deployment 'shop3t-fe' trên K3s...
+> Chạy lệnh: kubectl set image deployment/shop3t-fe shop3t-fe=tobi1008/shop3t-fe:1789518685 -n default
+deployment.apps/shop3t-fe image updated
+
+✅ [CI/CD - FRONTEND] Triển khai thành công bản dựng: 1789518685 từ kho https://github.com/thienduong2909/tttn_3tshop_fe!
+=== [HOÀN TẤT CI/CD FULLSTACK] shop3t ===
+DONE
+
+=== [BẮT ĐẦU CI/CD REDEPLOY] shop3t (Nhánh: main | Pull Git: True) ===
+🔍 Phát hiện cấu trúc Fullstack 2 Repositories riêng biệt.
+   ✨ [AUTO-MIGRATION] Phát hiện kho cá nhân https://github.com/tobi1008/tttn_3tshop_be_cl đã sẵn sàng!
+   🔄 [REMOTE SYNC] Đã tự động chuyển Remote Origin sang kho cá nhân: https://github.com/tobi1008/tttn_3tshop_be_cl
+
+🚀 [CI/CD - BACKEND] Bắt đầu quy trình đóng gói tại: /opt/vibe-hosting/workspaces/shop3t-be
+   📌 Nguồn mã nguồn ưu tiên: https://github.com/tobi1008/tttn_3tshop_be_cl
+   [1] Đang đồng bộ và fetch mã nguồn từ remote origin...
+> Chạy lệnh: git fetch --all
+Fetching origin
+
+   -> Reset mã nguồn theo nhánh: origin/main
+> Chạy lệnh: git reset --hard origin/main
+HEAD is now at 1152953 Update via Vibe Hosting File Manager
+
+   🔍 [AUTO-PATCH] Quét và chuẩn hóa CommonJS/ESM cho backend...
+   -> [Auto-Fix] Chuẩn hóa ESM sang CommonJS tại: formatter.js
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-be:1789518887...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-be:1789518887...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-be:1789518887 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════ Nixpacks v1.41.0 ═════════════╗
+║ setup      │ nodejs_20, npm-9_x             ║
+║─────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps ║
+║─────────────────────────────────────────────║
+║ start      │ npm run start                  ║
+╚═════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-be:1789518887
+
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-be:1789518887...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-be:1789518887...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-be:1789518887 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════ Nixpacks v1.41.0 ═════════════╗
+║ setup      │ nodejs_20, npm-9_x             ║
+║─────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps ║
+║─────────────────────────────────────────────║
+║ start      │ npm run start                  ║
+╚═════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-be:1789518887
+
+   [3] Đang đẩy Image lên Docker Hub...
+> Chạy lệnh: docker push tobi1008/shop3t-be:1789518887
+The push refers to repository [docker.io/tobi1008/shop3t-be]
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2d3a7bee366b: Waiting
+44136fa355b3: Waiting
+2d3a7bee366b: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2d3a7bee366b: Waiting
+44136fa355b3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2d3a7bee366b: Waiting
+2d3a7bee366b: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2d3a7bee366b: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2d3a7bee366b: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+2d3a7bee366b: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2d3a7bee366b: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2d3a7bee366b: Waiting
+44136fa355b3: Waiting
+2d3a7bee366b: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2d3a7bee366b: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2d3a7bee366b: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2d3a7bee366b: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2d3a7bee366b: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Layer already exists
+b65af0a51d86: Waiting
+b65af0a51d86: Waiting
+2d3a7bee366b: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2d3a7bee366b: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+b65af0a51d86: Waiting
+ae28d8886667: Waiting
+2d3a7bee366b: Waiting
+44136fa355b3: Already exists
+7962e2b983fd: Layer already exists
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+2d3a7bee366b: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+ae28d8886667: Waiting
+2d3a7bee366b: Waiting
+2ad41e34a622: Waiting
+27484d38acca: Waiting
+866b26ac4e47: Layer already exists
+b65af0a51d86: Layer already exists
+ae28d8886667: Waiting
+2d3a7bee366b: Waiting
+2ad41e34a622: Waiting
+27484d38acca: Waiting
+0b3f75d7e058: Waiting
+ae28d8886667: Layer already exists
+2ad41e34a622: Waiting
+27484d38acca: Waiting
+0b3f75d7e058: Waiting
+c63c9312c018: Waiting
+2fb1964323c2: Waiting
+2ad41e34a622: Layer already exists
+27484d38acca: Layer already exists
+0b3f75d7e058: Waiting
+0b3f75d7e058: Waiting
+c63c9312c018: Waiting
+2fb1964323c2: Waiting
+0b3f75d7e058: Waiting
+c63c9312c018: Waiting
+2fb1964323c2: Waiting
+0b3f75d7e058: Waiting
+c63c9312c018: Waiting
+2fb1964323c2: Waiting
+c63c9312c018: Waiting
+2fb1964323c2: Waiting
+2fb1964323c2: Waiting
+2d3a7bee366b: Pushed
+24f128d90079: Waiting
+24f128d90079: Waiting
+24f128d90079: Waiting
+24f128d90079: Waiting
+24f128d90079: Waiting
+24f128d90079: Waiting
+24f128d90079: Waiting
+2fb1964323c2: Pushed
+24f128d90079: Pushed
+c63c9312c018: Pushed
+0b3f75d7e058: Pushed
+1789518887: digest: sha256:871ada88c9bddbf125bbc5fbf2989de4ca99f2b3597d753abeed6be35fd9056c size: 856
+
+   [4] Cập nhật phiên bản Deployment 'shop3t-be' trên K3s...
+> Chạy lệnh: kubectl set image deployment/shop3t-be shop3t-be=tobi1008/shop3t-be:1789518887 -n default
+deployment.apps/shop3t-be image updated
+
+✅ [CI/CD - BACKEND] Triển khai thành công bản dựng: 1789518887 từ kho https://github.com/tobi1008/tttn_3tshop_be_cl!
+   ✨ [AUTO-MIGRATION] Phát hiện kho cá nhân https://github.com/tobi1008/tttn_3tshop_fe đã sẵn sàng!
+   🔄 [REMOTE SYNC] Đã tự động chuyển Remote Origin sang kho cá nhân: https://github.com/tobi1008/tttn_3tshop_fe
+
+🚀 [CI/CD - FRONTEND] Bắt đầu quy trình đóng gói tại: /opt/vibe-hosting/workspaces/shop3t-fe
+   📌 Nguồn mã nguồn ưu tiên: https://github.com/tobi1008/tttn_3tshop_fe
+   [1] Đang đồng bộ và fetch mã nguồn từ remote origin...
+> Chạy lệnh: git fetch --all
+Fetching origin
+
+   -> Reset mã nguồn theo nhánh: origin/main
+> Chạy lệnh: git reset --hard origin/main
+HEAD is now at aa8eb0a Update via Vibe Hosting File Manager
+
+   🔗 [FE LINKER] Đảm bảo cấu hình Backend API (https://api-shop3t.vibe.quyenlt.com)...
+[FE Linker] Đang liên kết Frontend tới Backend API (https://api-shop3t.vibe.quyenlt.com)...
+   -> Thay thế hardcode localhost trong: usePurchaseOrderData.ts
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-fe:1789518935...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-fe:1789518935...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-fe:1789518935 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ nodejs_20, npm-9_x                                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ caddy      │ pkgs: caddy                                                     ║
+║            │ cmds: caddy fmt --overwrite /assets/Caddyfile                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps                                  ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ build      │ npm run build                                                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ exec caddy run --config /assets/Caddyfile --adapter caddyfile   ║
+║            │ 2>&1                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-fe:1789518935
+
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-fe:1789518935...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-fe:1789518935...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-fe:1789518935 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ nodejs_20, npm-9_x                                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ caddy      │ pkgs: caddy                                                     ║
+║            │ cmds: caddy fmt --overwrite /assets/Caddyfile                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps                                  ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ build      │ npm run build                                                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ exec caddy run --config /assets/Caddyfile --adapter caddyfile   ║
+║            │ 2>&1                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-fe:1789518935
+
+   [3] Đang đẩy Image lên Docker Hub...
+> Chạy lệnh: docker push tobi1008/shop3t-fe:1789518935
+The push refers to repository [docker.io/tobi1008/shop3t-fe]
+5c6175595567: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+5c6175595567: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+5c6175595567: Waiting
+5c6175595567: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+5c6175595567: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+5c6175595567: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+5c6175595567: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+5c6175595567: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+5c6175595567: Waiting
+5c6175595567: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+5c6175595567: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+5c6175595567: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+5c6175595567: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+5c6175595567: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+5c6175595567: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+5c6175595567: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+5c6175595567: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+5c6175595567: Waiting
+44136fa355b3: Already exists
+7962e2b983fd: Layer already exists
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+5c6175595567: Waiting
+866b26ac4e47: Waiting
+5c6175595567: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+b65af0a51d86: Layer already exists
+866b26ac4e47: Layer already exists
+ffbbea5c53ef: Waiting
+5c6175595567: Waiting
+ae28d8886667: Waiting
+8a724f054f7b: Waiting
+2726e237d1a3: Layer already exists
+ae28d8886667: Waiting
+8a724f054f7b: Waiting
+ffbbea5c53ef: Waiting
+ae28d8886667: Layer already exists
+8a724f054f7b: Waiting
+a0b0e2b48840: Waiting
+ffbbea5c53ef: Waiting
+434e369151cf: Waiting
+ffbbea5c53ef: Layer already exists
+2521d71157b3: Waiting
+8a724f054f7b: Layer already exists
+a0b0e2b48840: Waiting
+2521d71157b3: Waiting
+a0b0e2b48840: Waiting
+434e369151cf: Waiting
+2521d71157b3: Layer already exists
+85ae9eb131ad: Waiting
+a0b0e2b48840: Layer already exists
+434e369151cf: Layer already exists
+a8adb63b320b: Waiting
+4f4fb700ef54: Waiting
+a8adb63b320b: Waiting
+4f4fb700ef54: Waiting
+85ae9eb131ad: Waiting
+a8adb63b320b: Waiting
+4f4fb700ef54: Waiting
+85ae9eb131ad: Waiting
+a8adb63b320b: Waiting
+4f4fb700ef54: Layer already exists
+eda04fed2fb4: Waiting
+85ae9eb131ad: Waiting
+a8adb63b320b: Waiting
+5c6175595567: Pushed
+eda04fed2fb4: Waiting
+85ae9eb131ad: Waiting
+1b001e453819: Waiting
+a8adb63b320b: Waiting
+eda04fed2fb4: Waiting
+85ae9eb131ad: Waiting
+1b001e453819: Waiting
+a77653d019e2: Waiting
+eda04fed2fb4: Waiting
+1b001e453819: Waiting
+eda04fed2fb4: Waiting
+1b001e453819: Waiting
+a77653d019e2: Waiting
+a77653d019e2: Waiting
+eda04fed2fb4: Waiting
+1b001e453819: Waiting
+a77653d019e2: Waiting
+1b001e453819: Waiting
+a77653d019e2: Waiting
+1b001e453819: Waiting
+a77653d019e2: Waiting
+77f8f4780acc: Waiting
+a8adb63b320b: Pushed
+77f8f4780acc: Waiting
+77f8f4780acc: Waiting
+77f8f4780acc: Waiting
+77f8f4780acc: Waiting
+77f8f4780acc: Waiting
+77f8f4780acc: Waiting
+1b001e453819: Pushed
+4f4fb700ef54: Layer already exists
+77f8f4780acc: Pushed
+a77653d019e2: Pushed
+85ae9eb131ad: Pushed
+eda04fed2fb4: Pushed
+1789518935: digest: sha256:fe88b878308a4371866323042a846b0c99ba1f0897dff7d284d4fe10e5914ee2 size: 856
+
+   [4] Cập nhật phiên bản Deployment 'shop3t-fe' trên K3s...
+> Chạy lệnh: kubectl set image deployment/shop3t-fe shop3t-fe=tobi1008/shop3t-fe:1789518935 -n default
+deployment.apps/shop3t-fe image updated
+
+✅ [CI/CD - FRONTEND] Triển khai thành công bản dựng: 1789518935 từ kho https://github.com/tobi1008/tttn_3tshop_fe!
+=== [HOÀN TẤT CI/CD FULLSTACK] shop3t ===
+DONE
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+⚠️ Model [stepfun/step-3.7-flash:free] gặp Rate Limit 429. Đang chuyển sang model tiếp theo...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [poolside/laguna-s-2.1:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [upstage/solar-pro4:free]...
+⚡ [Hermes Auto-heal] Bắt đầu Rebuild cho component [FE]...
+
+=== [BẮT ĐẦU CI/CD REDEPLOY] shop3t (Nhánh: main | Component: FE | Pull Git: False) ===
+🔍 Phát hiện cấu trúc Fullstack 2 Repositories riêng biệt.
+
+🚀 [CI/CD - FRONTEND] Bắt đầu quy trình đóng gói tại: /opt/vibe-hosting/workspaces/shop3t-fe
+   📌 Nguồn mã nguồn ưu tiên: https://github.com/tobi1008/tttn_3tshop_fe
+   [1] [AUTO-HEAL MODE] Giữ nguyên mã nguồn sửa đổi cục bộ, bỏ qua pull git.
+   🔗 [FE LINKER] Đảm bảo cấu hình Backend API (https://api-shop3t.vibe.quyenlt.com)...
+[FE Linker] Đang liên kết Frontend tới Backend API (https://api-shop3t.vibe.quyenlt.com)...
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-fe:1789519240...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-fe:1789519240...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-fe:1789519240 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ nodejs_20, npm-9_x                                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ caddy      │ pkgs: caddy                                                     ║
+║            │ cmds: caddy fmt --overwrite /assets/Caddyfile                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps                                  ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ build      │ npm run build                                                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ exec caddy run --config /assets/Caddyfile --adapter caddyfile   ║
+║            │ 2>&1                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-fe:1789519240
+
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-fe:1789519240...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-fe:1789519240...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-fe:1789519240 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ nodejs_20, npm-9_x                                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ caddy      │ pkgs: caddy                                                     ║
+║            │ cmds: caddy fmt --overwrite /assets/Caddyfile                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps                                  ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ build      │ npm run build                                                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ exec caddy run --config /assets/Caddyfile --adapter caddyfile   ║
+║            │ 2>&1                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-fe:1789519240
+
+   [3] Đang đẩy Image lên Docker Hub...
+> Chạy lệnh: docker push tobi1008/shop3t-fe:1789519240
+The push refers to repository [docker.io/tobi1008/shop3t-fe]
+2726e237d1a3: Waiting
+b56ae47ed790: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+b56ae47ed790: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b56ae47ed790: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b56ae47ed790: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+b56ae47ed790: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+b56ae47ed790: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b56ae47ed790: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b56ae47ed790: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b56ae47ed790: Waiting
+44136fa355b3: Waiting
+b56ae47ed790: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b56ae47ed790: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b56ae47ed790: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b56ae47ed790: Waiting
+44136fa355b3: Waiting
+b56ae47ed790: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+866b26ac4e47: Waiting
+b56ae47ed790: Waiting
+44136fa355b3: Already exists
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+b56ae47ed790: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+b56ae47ed790: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+7962e2b983fd: Layer already exists
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+b56ae47ed790: Waiting
+ae28d8886667: Waiting
+b56ae47ed790: Waiting
+ae28d8886667: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+b56ae47ed790: Waiting
+ae28d8886667: Waiting
+8a724f054f7b: Waiting
+2726e237d1a3: Layer already exists
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+866b26ac4e47: Layer already exists
+a0b0e2b48840: Waiting
+2521d71157b3: Waiting
+b56ae47ed790: Waiting
+ae28d8886667: Layer already exists
+8a724f054f7b: Waiting
+ffbbea5c53ef: Waiting
+b65af0a51d86: Layer already exists
+2521d71157b3: Waiting
+8a724f054f7b: Waiting
+ffbbea5c53ef: Waiting
+a0b0e2b48840: Waiting
+434e369151cf: Waiting
+8a724f054f7b: Layer already exists
+ffbbea5c53ef: Layer already exists
+85ae9eb131ad: Waiting
+a0b0e2b48840: Waiting
+2521d71157b3: Waiting
+4f4fb700ef54: Waiting
+85ae9eb131ad: Waiting
+a0b0e2b48840: Layer already exists
+2521d71157b3: Layer already exists
+434e369151cf: Waiting
+a8adb63b320b: Waiting
+434e369151cf: Layer already exists
+a8adb63b320b: Waiting
+4f4fb700ef54: Waiting
+85ae9eb131ad: Waiting
+eda04fed2fb4: Waiting
+a8adb63b320b: Layer already exists
+4f4fb700ef54: Layer already exists
+85ae9eb131ad: Layer already exists
+eda04fed2fb4: Waiting
+a77653d019e2: Waiting
+77f8f4780acc: Waiting
+1b001e453819: Waiting
+eda04fed2fb4: Waiting
+a77653d019e2: Waiting
+77f8f4780acc: Waiting
+1b001e453819: Waiting
+77f8f4780acc: Waiting
+1b001e453819: Layer already exists
+4f4fb700ef54: Layer already exists
+eda04fed2fb4: Layer already exists
+a77653d019e2: Waiting
+a77653d019e2: Layer already exists
+77f8f4780acc: Layer already exists
+b56ae47ed790: Pushed
+1789519240: digest: sha256:1223451d80fa3e56169cbabbe332dbd0725cd4e8629f4c912196036f84e164cb size: 856
+
+   [4] Cập nhật phiên bản Deployment 'shop3t-fe' trên K3s...
+> Chạy lệnh: kubectl set image deployment/shop3t-fe shop3t-fe=tobi1008/shop3t-fe:1789519240 -n default
+deployment.apps/shop3t-fe image updated
+
+✅ [CI/CD - FRONTEND] Triển khai thành công bản dựng: 1789519240 từ kho https://github.com/tobi1008/tttn_3tshop_fe!
+=== [HOÀN TẤT CI/CD FULLSTACK] shop3t ===
+DONE
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+⚠️ Model [stepfun/step-3.7-flash:free] gặp Rate Limit 429. Đang chuyển sang model tiếp theo...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [poolside/laguna-s-2.1:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [upstage/solar-pro4:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+⚠️ Model [stepfun/step-3.7-flash:free] gặp Rate Limit 429. Đang chuyển sang model tiếp theo...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [poolside/laguna-s-2.1:free]...
+⚡ [Hermes Smart-Route] Phát hiện lệnh K8s trong exec_pod, tự động chuyển ra Host VPS: cat <<'EOF' | kubectl apply -f -
+apiVersion: traefik.contain...
+⚡ [Hermes Smart-Route] Phát hiện lệnh K8s trong exec_pod, tự động chuyển ra Host VPS: kubectl annotate ingress 3tshop-be-ingress -n default traefi...
+⚡ [Hermes Smart-Route] Phát hiện lệnh K8s trong exec_pod, tự động chuyển ra Host VPS: cat <<'EOF' | kubectl apply -f -
+apiVersion: traefik.contain...
+⚡ [Hermes Smart-Route] Phát hiện lệnh K8s trong exec_pod, tự động chuyển ra Host VPS: kubectl annotate ingress 3tshop-be-ingress -n default traefi...
+⚡ [Hermes Smart-Route] Phát hiện lệnh K8s trong exec_pod, tự động chuyển ra Host VPS: cat <<'EOF' | kubectl apply -f -
+apiVersion: traefik.contain...
+⚡ [Hermes Smart-Route] Phát hiện lệnh K8s trong exec_pod, tự động chuyển ra Host VPS: kubectl annotate ingress 3tshop-be-ingress -n default traefi...
+⚡ [Hermes Auto-Correct] Tự động sửa tên Ingress: '3tshop-be-ingress' -> 'shop3t-be-ingress'
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+⚠️ Model [stepfun/step-3.7-flash:free] gặp Rate Limit 429. Đang chuyển sang model tiếp theo...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [poolside/laguna-s-2.1:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [upstage/solar-pro4:free]...
+⚡ [Hermes Auto-heal] Bắt đầu Rebuild cho component [BE]...
+
+=== [BẮT ĐẦU CI/CD REDEPLOY] shop3t (Nhánh: main | Component: BE | Pull Git: False) ===
+🔍 Phát hiện cấu trúc Fullstack 2 Repositories riêng biệt.
+
+🚀 [CI/CD - BACKEND] Bắt đầu quy trình đóng gói tại: /opt/vibe-hosting/workspaces/shop3t-be
+   📌 Nguồn mã nguồn ưu tiên: https://github.com/tobi1008/tttn_3tshop_be_cl
+   [1] [AUTO-HEAL MODE] Giữ nguyên mã nguồn sửa đổi cục bộ, bỏ qua pull git.
+   🔍 [AUTO-PATCH] Quét và chuẩn hóa CommonJS/ESM cho backend...
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-be:1789522490...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-be:1789522490...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-be:1789522490 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════ Nixpacks v1.41.0 ═════════════╗
+║ setup      │ nodejs_20, npm-9_x             ║
+║─────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps ║
+║─────────────────────────────────────────────║
+║ start      │ npm run start                  ║
+╚═════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-be:1789522490
+
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-be:1789522490...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-be:1789522490...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-be:1789522490 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════ Nixpacks v1.41.0 ═════════════╗
+║ setup      │ nodejs_20, npm-9_x             ║
+║─────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps ║
+║─────────────────────────────────────────────║
+║ start      │ npm run start                  ║
+╚═════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-be:1789522490
+
+   [3] Đang đẩy Image lên Docker Hub...
+> Chạy lệnh: docker push tobi1008/shop3t-be:1789522490
+The push refers to repository [docker.io/tobi1008/shop3t-be]
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+752b8bf85de7: Waiting
+2726e237d1a3: Waiting
+752b8bf85de7: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+752b8bf85de7: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+752b8bf85de7: Waiting
+44136fa355b3: Waiting
+752b8bf85de7: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+752b8bf85de7: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+752b8bf85de7: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+752b8bf85de7: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+752b8bf85de7: Waiting
+2726e237d1a3: Waiting
+752b8bf85de7: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+752b8bf85de7: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+752b8bf85de7: Waiting
+2726e237d1a3: Waiting
+752b8bf85de7: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+752b8bf85de7: Waiting
+44136fa355b3: Waiting
+752b8bf85de7: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+752b8bf85de7: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+752b8bf85de7: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+752b8bf85de7: Waiting
+44136fa355b3: Already exists
+7962e2b983fd: Layer already exists
+752b8bf85de7: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+752b8bf85de7: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Layer already exists
+866b26ac4e47: Layer already exists
+27484d38acca: Waiting
+752b8bf85de7: Waiting
+ae28d8886667: Waiting
+2ad41e34a622: Waiting
+2726e237d1a3: Layer already exists
+2ad41e34a622: Waiting
+27484d38acca: Waiting
+ae28d8886667: Waiting
+796d93b6e035: Waiting
+27484d38acca: Layer already exists
+ae28d8886667: Layer already exists
+2ad41e34a622: Layer already exists
+8ed233b0add2: Waiting
+d69796dab2ad: Waiting
+8ed233b0add2: Waiting
+d69796dab2ad: Waiting
+796d93b6e035: Waiting
+8ed233b0add2: Waiting
+d69796dab2ad: Waiting
+796d93b6e035: Waiting
+8ed233b0add2: Waiting
+d69796dab2ad: Waiting
+796d93b6e035: Waiting
+8ed233b0add2: Waiting
+d69796dab2ad: Waiting
+796d93b6e035: Waiting
+8ed233b0add2: Waiting
+d69796dab2ad: Waiting
+796d93b6e035: Waiting
+d69796dab2ad: Waiting
+796d93b6e035: Waiting
+752b8bf85de7: Pushed
+c42f6a418456: Waiting
+c42f6a418456: Waiting
+c42f6a418456: Waiting
+c42f6a418456: Waiting
+c42f6a418456: Waiting
+c42f6a418456: Waiting
+c42f6a418456: Waiting
+796d93b6e035: Pushed
+c42f6a418456: Pushed
+d69796dab2ad: Pushed
+8ed233b0add2: Pushed
+1789522490: digest: sha256:5708c5fe73293bbe68518735c25aee2ccb9d218142865212d40aaf17903cf937 size: 856
+
+   [4] Cập nhật phiên bản Deployment 'shop3t-be' trên K3s...
+> Chạy lệnh: kubectl set image deployment/shop3t-be shop3t-be=tobi1008/shop3t-be:1789522490 -n default
+deployment.apps/shop3t-be image updated
+
+✅ [CI/CD - BACKEND] Triển khai thành công bản dựng: 1789522490 từ kho https://github.com/tobi1008/tttn_3tshop_be_cl!
+=== [HOÀN TẤT CI/CD FULLSTACK] shop3t ===
+DONE
+
+=== [BẮT ĐẦU CI/CD REDEPLOY] shop3t (Nhánh: main | Pull Git: True) ===
+🔍 Phát hiện cấu trúc Fullstack 2 Repositories riêng biệt.
+
+🚀 [CI/CD - BACKEND] Bắt đầu quy trình đóng gói tại: /opt/vibe-hosting/workspaces/shop3t-be
+   📌 Nguồn mã nguồn ưu tiên: https://github.com/tobi1008/tttn_3tshop_be_cl
+   [1] Đang đồng bộ và fetch mã nguồn từ remote origin...
+> Chạy lệnh: git fetch --all
+Fetching origin
+
+   -> Reset mã nguồn theo nhánh: origin/main
+> Chạy lệnh: git reset --hard origin/main
+HEAD is now at 1152953 Update via Vibe Hosting File Manager
+
+   🔍 [AUTO-PATCH] Quét và chuẩn hóa CommonJS/ESM cho backend...
+   -> [Auto-Fix] Chuẩn hóa ESM sang CommonJS tại: formatter.js
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-be:1789522671...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-be:1789522671...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-be:1789522671 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════ Nixpacks v1.41.0 ═════════════╗
+║ setup      │ nodejs_20, npm-9_x             ║
+║─────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps ║
+║─────────────────────────────────────────────║
+║ start      │ npm run start                  ║
+╚═════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-be:1789522671
+
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-be:1789522671...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-be:1789522671...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-be:1789522671 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════ Nixpacks v1.41.0 ═════════════╗
+║ setup      │ nodejs_20, npm-9_x             ║
+║─────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps ║
+║─────────────────────────────────────────────║
+║ start      │ npm run start                  ║
+╚═════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-be:1789522671
+
+   [3] Đang đẩy Image lên Docker Hub...
+> Chạy lệnh: docker push tobi1008/shop3t-be:1789522671
+The push refers to repository [docker.io/tobi1008/shop3t-be]
+2726e237d1a3: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7cdf40bb54e6: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7cdf40bb54e6: Waiting
+2726e237d1a3: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Layer already exists
+2726e237d1a3: Layer already exists
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Waiting
+7cdf40bb54e6: Waiting
+44136fa355b3: Already exists
+ae28d8886667: Waiting
+2ad41e34a622: Waiting
+b65af0a51d86: Layer already exists
+866b26ac4e47: Layer already exists
+27484d38acca: Waiting
+27484d38acca: Waiting
+ae28d8886667: Waiting
+2ad41e34a622: Waiting
+ebce8b682f71: Waiting
+ae28d8886667: Layer already exists
+2ad41e34a622: Layer already exists
+decc9050a29f: Waiting
+27484d38acca: Waiting
+decc9050a29f: Waiting
+27484d38acca: Layer already exists
+ebce8b682f71: Waiting
+8b6fdb7cb76a: Waiting
+ebce8b682f71: Waiting
+8b6fdb7cb76a: Waiting
+decc9050a29f: Waiting
+decc9050a29f: Waiting
+ebce8b682f71: Waiting
+8b6fdb7cb76a: Waiting
+8b6fdb7cb76a: Waiting
+decc9050a29f: Waiting
+ebce8b682f71: Waiting
+ebce8b682f71: Waiting
+8b6fdb7cb76a: Waiting
+decc9050a29f: Waiting
+ebce8b682f71: Waiting
+8b6fdb7cb76a: Waiting
+7cdf40bb54e6: Pushed
+241b3b9ac382: Waiting
+241b3b9ac382: Waiting
+241b3b9ac382: Waiting
+241b3b9ac382: Waiting
+241b3b9ac382: Waiting
+241b3b9ac382: Waiting
+8b6fdb7cb76a: Pushed
+241b3b9ac382: Pushed
+ebce8b682f71: Pushed
+decc9050a29f: Pushed
+1789522671: digest: sha256:406c073de61c2c913a5348abffd647bb7609094fcded4cff653120da655c1f03 size: 856
+
+   [4] Cập nhật phiên bản Deployment 'shop3t-be' trên K3s...
+> Chạy lệnh: kubectl set image deployment/shop3t-be shop3t-be=tobi1008/shop3t-be:1789522671 -n default
+deployment.apps/shop3t-be image updated
+
+✅ [CI/CD - BACKEND] Triển khai thành công bản dựng: 1789522671 từ kho https://github.com/tobi1008/tttn_3tshop_be_cl!
+
+🚀 [CI/CD - FRONTEND] Bắt đầu quy trình đóng gói tại: /opt/vibe-hosting/workspaces/shop3t-fe
+   📌 Nguồn mã nguồn ưu tiên: https://github.com/tobi1008/tttn_3tshop_fe
+   [1] Đang đồng bộ và fetch mã nguồn từ remote origin...
+> Chạy lệnh: git fetch --all
+Fetching origin
+
+   -> Reset mã nguồn theo nhánh: origin/main
+> Chạy lệnh: git reset --hard origin/main
+HEAD is now at aa8eb0a Update via Vibe Hosting File Manager
+
+   🔗 [FE LINKER] Đảm bảo cấu hình Backend API (https://api-shop3t.vibe.quyenlt.com)...
+[FE Linker] Đang liên kết Frontend tới Backend API (https://api-shop3t.vibe.quyenlt.com)...
+   -> Thay thế hardcode localhost trong: usePurchaseOrderData.ts
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-fe:1789522721...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-fe:1789522721...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-fe:1789522721 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ nodejs_20, npm-9_x                                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ caddy      │ pkgs: caddy                                                     ║
+║            │ cmds: caddy fmt --overwrite /assets/Caddyfile                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps                                  ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ build      │ npm run build                                                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ exec caddy run --config /assets/Caddyfile --adapter caddyfile   ║
+║            │ 2>&1                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-fe:1789522721
+
+   [2] Đang đóng gói Docker Image phiên bản mới: tobi1008/shop3t-fe:1789522721...
+   📦 [CI/CD NIXPACKS] Chuẩn bị đóng gói Docker Image: tobi1008/shop3t-fe:1789522721...
+> Chạy lệnh: nixpacks build . --name tobi1008/shop3t-fe:1789522721 --env NIXPACKS_INSTALL_CMD=npm install --legacy-peer-deps --env NIXPACKS_NODE_VERSION=20
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ nodejs_20, npm-9_x                                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ caddy      │ pkgs: caddy                                                     ║
+║            │ cmds: caddy fmt --overwrite /assets/Caddyfile                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ npm install --legacy-peer-deps                                  ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ build      │ npm run build                                                   ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ exec caddy run --config /assets/Caddyfile --adapter caddyfile   ║
+║            │ 2>&1                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/shop3t-fe:1789522721
+
+   [3] Đang đẩy Image lên Docker Hub...
+> Chạy lệnh: docker push tobi1008/shop3t-fe:1789522721
+The push refers to repository [docker.io/tobi1008/shop3t-fe]
+bfd01ad3ad06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bfd01ad3ad06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bfd01ad3ad06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+bfd01ad3ad06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+bfd01ad3ad06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bfd01ad3ad06: Waiting
+44136fa355b3: Waiting
+bfd01ad3ad06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bfd01ad3ad06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bfd01ad3ad06: Waiting
+2726e237d1a3: Waiting
+bfd01ad3ad06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+bfd01ad3ad06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bfd01ad3ad06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+bfd01ad3ad06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+bfd01ad3ad06: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+bfd01ad3ad06: Waiting
+44136fa355b3: Already exists
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+bfd01ad3ad06: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+bfd01ad3ad06: Waiting
+bfd01ad3ad06: Waiting
+ae28d8886667: Waiting
+7962e2b983fd: Layer already exists
+2726e237d1a3: Layer already exists
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+8a724f054f7b: Waiting
+bfd01ad3ad06: Waiting
+ae28d8886667: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+8a724f054f7b: Waiting
+b65af0a51d86: Waiting
+8a724f054f7b: Waiting
+bfd01ad3ad06: Waiting
+ae28d8886667: Waiting
+ffbbea5c53ef: Waiting
+866b26ac4e47: Layer already exists
+ae28d8886667: Layer already exists
+ffbbea5c53ef: Waiting
+a0b0e2b48840: Waiting
+2521d71157b3: Waiting
+b65af0a51d86: Layer already exists
+8a724f054f7b: Layer already exists
+434e369151cf: Waiting
+bfd01ad3ad06: Waiting
+2521d71157b3: Waiting
+434e369151cf: Waiting
+bfd01ad3ad06: Waiting
+ffbbea5c53ef: Waiting
+a0b0e2b48840: Waiting
+4f4fb700ef54: Waiting
+434e369151cf: Layer already exists
+bfd01ad3ad06: Waiting
+ffbbea5c53ef: Layer already exists
+2521d71157b3: Layer already exists
+eda04fed2fb4: Waiting
+85ae9eb131ad: Waiting
+a0b0e2b48840: Layer already exists
+a8adb63b320b: Waiting
+85ae9eb131ad: Waiting
+a8adb63b320b: Waiting
+4f4fb700ef54: Waiting
+eda04fed2fb4: Waiting
+85ae9eb131ad: Layer already exists
+1b001e453819: Waiting
+a8adb63b320b: Waiting
+4f4fb700ef54: Waiting
+eda04fed2fb4: Waiting
+eda04fed2fb4: Layer already exists
+a77653d019e2: Waiting
+1b001e453819: Waiting
+a8adb63b320b: Layer already exists
+4f4fb700ef54: Layer already exists
+77f8f4780acc: Waiting
+1b001e453819: Waiting
+77f8f4780acc: Waiting
+a77653d019e2: Waiting
+a77653d019e2: Layer already exists
+1b001e453819: Layer already exists
+77f8f4780acc: Layer already exists
+bfd01ad3ad06: Pushed
+1789522721: digest: sha256:ecb77f833496d10857eb71cb9c9e30f8611b790e4975f38f4a5382d92f205443 size: 856
+
+   [4] Cập nhật phiên bản Deployment 'shop3t-fe' trên K3s...
+> Chạy lệnh: kubectl set image deployment/shop3t-fe shop3t-fe=tobi1008/shop3t-fe:1789522721 -n default
+deployment.apps/shop3t-fe image updated
+
+✅ [CI/CD - FRONTEND] Triển khai thành công bản dựng: 1789522721 từ kho https://github.com/tobi1008/tttn_3tshop_fe!
+=== [HOÀN TẤT CI/CD FULLSTACK] shop3t ===
+DONE
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+⚠️ Model [stepfun/step-3.7-flash:free] gặp Rate Limit 429. Đang chuyển sang model tiếp theo...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [poolside/laguna-s-2.1:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [upstage/solar-pro4:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+⚠️ Model [stepfun/step-3.7-flash:free] gặp Rate Limit 429. Đang chuyển sang model tiếp theo...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [poolside/laguna-s-2.1:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+⚠️ Model [stepfun/step-3.7-flash:free] gặp Rate Limit 429. Đang chuyển sang model tiếp theo...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [poolside/laguna-s-2.1:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [upstage/solar-pro4:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+⚠️ Model [stepfun/step-3.7-flash:free] gặp Rate Limit 429. Đang chuyển sang model tiếp theo...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [poolside/laguna-s-2.1:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [upstage/solar-pro4:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [stepfun/step-3.7-flash:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [poolside/laguna-s-2.1:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [poolside/laguna-s-2.1:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [upstage/solar-pro4:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [stepfun/step-3.7-flash:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [poolside/laguna-s-2.1:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [stepfun/step-3.7-flash:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [poolside/laguna-s-2.1:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [stepfun/step-3.7-flash:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [poolside/laguna-s-2.1:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [stepfun/step-3.7-flash:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [poolside/laguna-s-2.1:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [stepfun/step-3.7-flash:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [poolside/laguna-s-2.1:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [stepfun/step-3.7-flash:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [poolside/laguna-s-2.1:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [stepfun/step-3.7-flash:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [poolside/laguna-s-2.1:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [stepfun/step-3.7-flash:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [poolside/laguna-s-2.1:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [stepfun/step-3.7-flash:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [poolside/laguna-s-2.1:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [stepfun/step-3.7-flash:free]...
+💬 [Hermes Chat] Gửi tin nhắn tới Model [poolside/laguna-s-2.1:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+⚠️ Model [stepfun/step-3.7-flash:free] gặp Rate Limit 429. Đang chuyển sang model tiếp theo...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [poolside/laguna-s-2.1:free]...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [stepfun/step-3.7-flash:free]...
+⚠️ Model [stepfun/step-3.7-flash:free] gặp Rate Limit 429. Đang chuyển sang model tiếp theo...
+🤖 [Hermes AI] Đang gửi phân tích tới Model [poolside/laguna-s-2.1:free]...

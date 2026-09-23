@@ -1,0 +1,1179 @@
+=== [BẮT ĐẦU DEPLOY] python ===
+[1] Đang clone repo: https://github.com/tobi1008/vibe-hosting.git...
+> Chạy lệnh: git clone https://github.com/tobi1008/vibe-hosting.git /opt/vibe-hosting/workspaces/python
+[2] Đang quét cấu trúc mã nguồn...
+> Chạy lệnh: tree -I node_modules|.git|venv /opt/vibe-hosting/workspaces/python
+/opt/vibe-hosting/workspaces/python
+├── app.py
+├── README.md
+├── requirements.txt
+├── static
+│   ├── css
+│   │   └── style.css
+│   └── js
+│       └── main.js
+└── templates
+    └── index.html
+
+4 directories, 6 files
+
+
+[3] (Lần thử 1/3) Bắt đầu gọi AI phân tích mã nguồn...
+⏳ Đang gửi yêu cầu tới Model: [stepfun/step-3.7-flash:free]...
+⚠️ Lỗi kết nối tới [stepfun/step-3.7-flash:free]: HTTPConnectionPool(host='127.0.0.1', port=8645): Read timed out. (read timeout=60). Thử model tiếp theo...
+⏳ Đang gửi yêu cầu tới Model: [poolside/laguna-s-2.1:free]...
+⚠️ Lỗi kết nối tới [poolside/laguna-s-2.1:free]: HTTPConnectionPool(host='127.0.0.1', port=8645): Read timed out. (read timeout=60). Thử model tiếp theo...
+⏳ Đang gửi yêu cầu tới Model: [upstage/solar-pro4:free]...
+✅ Model [upstage/solar-pro4:free] phản hồi thành công!
+ 🛠️ [AUTO-HEAL] AI đang tự động vá lỗi file: app.py...
+[4] Đang lưu cấu hình K3s & Nixpacks...
+[5] Bắt đầu build Docker image (tobi1008/python:latest)...
+> Chạy lệnh: nixpacks build . --name tobi1008/python:latest
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ python3, gcc                                                    ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ python -m venv --copies /opt/venv && . /opt/venv/bin/activate   ║
+║            │ && pip install -r requirements.txt                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ python app.py                                                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/python:latest
+
+[6] Đang đẩy Image lên Docker Hub (tobi1008)...
+> Chạy lệnh: docker push tobi1008/python:latest
+The push refers to repository [docker.io/tobi1008/python]
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+fa491769d04e: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+fa491769d04e: Waiting
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+fa491769d04e: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+fa491769d04e: Pushed
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+44136fa355b3: Pushed
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+866b26ac4e47: Pushed
+2ff48351d1f6: Waiting
+ae28d8886667: Pushed
+2ff48351d1f6: Waiting
+1b2935b059b4: Waiting
+2ff48351d1f6: Waiting
+1b2935b059b4: Waiting
+1b2935b059b4: Waiting
+2ff48351d1f6: Waiting
+1b2935b059b4: Waiting
+2ff48351d1f6: Waiting
+1b2935b059b4: Waiting
+2ff48351d1f6: Waiting
+1b2935b059b4: Waiting
+2ff48351d1f6: Waiting
+1b2935b059b4: Waiting
+2ff48351d1f6: Waiting
+2ff48351d1f6: Waiting
+1b2935b059b4: Waiting
+2ff48351d1f6: Waiting
+1b2935b059b4: Waiting
+1b2935b059b4: Waiting
+2ff48351d1f6: Waiting
+ab5d01f0b8d7: Waiting
+2ff48351d1f6: Pushed
+ab5d01f0b8d7: Waiting
+ab5d01f0b8d7: Waiting
+ab5d01f0b8d7: Waiting
+ab5d01f0b8d7: Waiting
+ab5d01f0b8d7: Waiting
+ab5d01f0b8d7: Waiting
+0370f80f875c: Waiting
+ab5d01f0b8d7: Pushed
+0370f80f875c: Waiting
+0370f80f875c: Waiting
+0370f80f875c: Waiting
+0370f80f875c: Waiting
+0370f80f875c: Waiting
+30d424292236: Waiting
+7962e2b983fd: Pushed
+30d424292236: Waiting
+30d424292236: Waiting
+30d424292236: Waiting
+30d424292236: Waiting
+4f4fb700ef54: Waiting
+30d424292236: Pushed
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+0370f80f875c: Pushed
+4f4fb700ef54: Waiting
+4f4fb700ef54: Pushed
+2726e237d1a3: Pushed
+b65af0a51d86: Pushed
+1b2935b059b4: Pushed
+latest: digest: sha256:a13912d0285c5383224e58bc32735da68c4485703aa582b4dc110ebecf85ee9a size: 856
+
+[7] Yêu cầu K3s triển khai ứng dụng (Kèm tên miền & SSL)...
+> Chạy lệnh: kubectl apply -f k8s/deployment.yaml
+deployment.apps/python created
+
+> Chạy lệnh: kubectl apply -f k8s/service.yaml
+service/python created
+
+> Chạy lệnh: kubectl apply -f k8s/ingress.yaml
+ingress.networking.k8s.io/python created
+
+=== [HOÀN TẤT] Ứng dụng đã online tại https://python.vibe.quyenlt.com ===
+DONE
+
+=== [BẮT ĐẦU CI/CD REDEPLOY] python (Nhánh: main) ===
+[1] Đang kéo (Pull) mã nguồn mới nhất...
+> Chạy lệnh: git fetch --all
+Fetching origin
+
+> Chạy lệnh: git reset --hard origin/main
+HEAD is now at 1842b4b Test Ci/cd Vibe hosting
+
+[2] Đang Build Docker Image phiên bản mới (tobi1008/python:1789204697)...
+> Chạy lệnh: nixpacks build . --name tobi1008/python:1789204697
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ python3, gcc                                                    ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ python -m venv --copies /opt/venv && . /opt/venv/bin/activate   ║
+║            │ && pip install -r requirements.txt                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ python app.py                                                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/python:1789204697
+
+[3] Đang đẩy Image lên kho lưu trữ...
+> Chạy lệnh: docker push tobi1008/python:1789204697
+The push refers to repository [docker.io/tobi1008/python]
+2726e237d1a3: Waiting
+f7e1de9847bf: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+f7e1de9847bf: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+f7e1de9847bf: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+f7e1de9847bf: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f7e1de9847bf: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f7e1de9847bf: Waiting
+f7e1de9847bf: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+f7e1de9847bf: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+f7e1de9847bf: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f7e1de9847bf: Waiting
+44136fa355b3: Waiting
+f7e1de9847bf: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f7e1de9847bf: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f7e1de9847bf: Waiting
+44136fa355b3: Waiting
+f7e1de9847bf: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f7e1de9847bf: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Layer already exists
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+f7e1de9847bf: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+f7e1de9847bf: Waiting
+f7e1de9847bf: Waiting
+44136fa355b3: Already exists
+866b26ac4e47: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+f7e1de9847bf: Waiting
+f7e1de9847bf: Waiting
+866b26ac4e47: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+f7e1de9847bf: Waiting
+ae28d8886667: Waiting
+866b26ac4e47: Layer already exists
+2726e237d1a3: Layer already exists
+b65af0a51d86: Layer already exists
+2ff48351d1f6: Waiting
+1b2935b059b4: Waiting
+ae28d8886667: Waiting
+2ff48351d1f6: Waiting
+1b2935b059b4: Waiting
+2ff48351d1f6: Waiting
+1b2935b059b4: Waiting
+ae28d8886667: Waiting
+2ff48351d1f6: Layer already exists
+1b2935b059b4: Layer already exists
+ae28d8886667: Layer already exists
+0ad4711d9359: Waiting
+5f7337bb803d: Waiting
+4833f25458eb: Waiting
+4833f25458eb: Waiting
+0ad4711d9359: Waiting
+5f7337bb803d: Waiting
+0ad4711d9359: Waiting
+5f7337bb803d: Waiting
+4833f25458eb: Waiting
+0ad4711d9359: Waiting
+5f7337bb803d: Waiting
+4833f25458eb: Waiting
+0ad4711d9359: Waiting
+5f7337bb803d: Waiting
+4833f25458eb: Waiting
+5f7337bb803d: Waiting
+4833f25458eb: Waiting
+0ad4711d9359: Waiting
+f7e1de9847bf: Pushed
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Layer already exists
+4833f25458eb: Pushed
+0ad4711d9359: Pushed
+5f7337bb803d: Pushed
+1789204697: digest: sha256:4b4c736d474fcf6c5c6419b225db57bf791364c76d0dcb8b66a0cfbe44d70779 size: 856
+
+[4] Đang Rollout bản cập nhật lên K3s...
+> Chạy lệnh: kubectl set image deployment/python python=tobi1008/python:1789204697
+deployment.apps/python image updated
+
+=== [HOÀN TẤT CI/CD] python đã cập nhật lên phiên bản 1789204697 ===
+DONE
+
+=== [BẮT ĐẦU CI/CD REDEPLOY] python (Nhánh: main) ===
+[1] Đang kéo (Pull) mã nguồn mới nhất...
+> Chạy lệnh: git fetch --all
+Fetching origin
+
+> Chạy lệnh: git reset --hard origin/main
+HEAD is now at 8183f39 Test Ci/cd Vibe hosting v1
+
+[2] Đang Build Docker Image phiên bản mới (tobi1008/python:1789205224)...
+> Chạy lệnh: nixpacks build . --name tobi1008/python:1789205224
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ python3, gcc                                                    ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ python -m venv --copies /opt/venv && . /opt/venv/bin/activate   ║
+║            │ && pip install -r requirements.txt                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ python app.py                                                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/python:1789205224
+
+[3] Đang đẩy Image lên kho lưu trữ...
+> Chạy lệnh: docker push tobi1008/python:1789205224
+The push refers to repository [docker.io/tobi1008/python]
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e94550fa31ea: Waiting
+44136fa355b3: Waiting
+e94550fa31ea: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+e94550fa31ea: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e94550fa31ea: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e94550fa31ea: Waiting
+44136fa355b3: Waiting
+e94550fa31ea: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e94550fa31ea: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e94550fa31ea: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e94550fa31ea: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e94550fa31ea: Waiting
+e94550fa31ea: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+e94550fa31ea: Waiting
+e94550fa31ea: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+e94550fa31ea: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+b65af0a51d86: Waiting
+e94550fa31ea: Waiting
+44136fa355b3: Already exists
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+e94550fa31ea: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+e94550fa31ea: Waiting
+7962e2b983fd: Waiting
+e94550fa31ea: Waiting
+866b26ac4e47: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Layer already exists
+b65af0a51d86: Waiting
+b65af0a51d86: Waiting
+e94550fa31ea: Waiting
+866b26ac4e47: Waiting
+7962e2b983fd: Waiting
+866b26ac4e47: Waiting
+7962e2b983fd: Layer already exists
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+e94550fa31ea: Waiting
+b65af0a51d86: Layer already exists
+1b2935b059b4: Waiting
+866b26ac4e47: Layer already exists
+2ff48351d1f6: Waiting
+ae28d8886667: Waiting
+ae28d8886667: Waiting
+1b2935b059b4: Waiting
+2ff48351d1f6: Waiting
+4e79ccb42079: Waiting
+2ff48351d1f6: Layer already exists
+ae28d8886667: Layer already exists
+f2f81f5d32b2: Waiting
+1b2935b059b4: Layer already exists
+a0e2d8f33e35: Waiting
+f2f81f5d32b2: Waiting
+a0e2d8f33e35: Waiting
+4e79ccb42079: Waiting
+a0e2d8f33e35: Waiting
+4e79ccb42079: Waiting
+f2f81f5d32b2: Waiting
+f2f81f5d32b2: Waiting
+a0e2d8f33e35: Waiting
+4e79ccb42079: Waiting
+a0e2d8f33e35: Waiting
+4e79ccb42079: Waiting
+f2f81f5d32b2: Waiting
+4e79ccb42079: Waiting
+f2f81f5d32b2: Waiting
+a0e2d8f33e35: Waiting
+4f4fb700ef54: Waiting
+e94550fa31ea: Pushed
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Layer already exists
+a0e2d8f33e35: Pushed
+4e79ccb42079: Pushed
+f2f81f5d32b2: Pushed
+1789205224: digest: sha256:e76b58241c9a558ecd534e5005d70564e03d7867d59c1f2ab295c079d827ff4e size: 856
+
+[4] Đang Rollout bản cập nhật lên K3s...
+> Chạy lệnh: kubectl set image deployment/python python=tobi1008/python:1789205224
+deployment.apps/python image updated
+
+=== [HOÀN TẤT CI/CD] python đã cập nhật lên phiên bản 1789205224 ===
+DONE
+
+=== [BẮT ĐẦU CI/CD REDEPLOY] python (Nhánh: main) ===
+[1] Đang kéo (Pull) mã nguồn mới nhất...
+> Chạy lệnh: git fetch --all
+Fetching origin
+
+> Chạy lệnh: git reset --hard origin/main
+HEAD is now at ac83b1b Test Ci/cd Vibe hosting v2
+
+[2] Đang Build Docker Image phiên bản mới (tobi1008/python:1789205465)...
+> Chạy lệnh: nixpacks build . --name tobi1008/python:1789205465
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ python3, gcc                                                    ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ python -m venv --copies /opt/venv && . /opt/venv/bin/activate   ║
+║            │ && pip install -r requirements.txt                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ python app.py                                                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/python:1789205465
+
+[3] Đang đẩy Image lên kho lưu trữ...
+> Chạy lệnh: docker push tobi1008/python:1789205465
+The push refers to repository [docker.io/tobi1008/python]
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Layer already exists
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Layer already exists
+b65af0a51d86: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+866b26ac4e47: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+b65af0a51d86: Waiting
+25e6bd133cbb: Waiting
+44136fa355b3: Already exists
+866b26ac4e47: Waiting
+1b2935b059b4: Waiting
+25e6bd133cbb: Waiting
+2ff48351d1f6: Waiting
+866b26ac4e47: Layer already exists
+ae28d8886667: Waiting
+b65af0a51d86: Layer already exists
+2ff48351d1f6: Waiting
+ae28d8886667: Waiting
+1b2935b059b4: Waiting
+1b2935b059b4: Waiting
+2ff48351d1f6: Layer already exists
+8894bdd50801: Waiting
+ae28d8886667: Layer already exists
+315252ba51b2: Waiting
+1b2935b059b4: Layer already exists
+8e7728d41eee: Waiting
+8894bdd50801: Waiting
+315252ba51b2: Waiting
+8e7728d41eee: Waiting
+8894bdd50801: Waiting
+315252ba51b2: Waiting
+315252ba51b2: Waiting
+8e7728d41eee: Waiting
+8894bdd50801: Waiting
+8e7728d41eee: Waiting
+8894bdd50801: Waiting
+315252ba51b2: Waiting
+315252ba51b2: Waiting
+8e7728d41eee: Waiting
+8894bdd50801: Waiting
+8e7728d41eee: Waiting
+315252ba51b2: Waiting
+4f4fb700ef54: Waiting
+25e6bd133cbb: Pushed
+4f4fb700ef54: Waiting
+4f4fb700ef54: Layer already exists
+8e7728d41eee: Pushed
+8894bdd50801: Pushed
+315252ba51b2: Pushed
+1789205465: digest: sha256:80072adfb59630b1a4c148991410e61c4bbeb581c6067dd2b7265ef5f3c22771 size: 856
+
+[4] Đang Rollout bản cập nhật lên K3s...
+> Chạy lệnh: kubectl set image deployment/python python=tobi1008/python:1789205465
+deployment.apps/python image updated
+
+=== [HOÀN TẤT CI/CD] python đã cập nhật lên phiên bản 1789205465 ===
+DONE
+
+=== [BẮT ĐẦU CI/CD REDEPLOY] python (Nhánh: main) ===
+[1] Đang kéo (Pull) mã nguồn mới nhất...
+> Chạy lệnh: git fetch --all
+Fetching origin
+
+> Chạy lệnh: git reset --hard origin/main
+HEAD is now at 999595e Test Ci/cd Vibe hosting v3
+
+[2] Đang Build Docker Image phiên bản mới (tobi1008/python:1789205714)...
+> Chạy lệnh: nixpacks build . --name tobi1008/python:1789205714
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ python3, gcc                                                    ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ python -m venv --copies /opt/venv && . /opt/venv/bin/activate   ║
+║            │ && pip install -r requirements.txt                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ python app.py                                                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/python:1789205714
+
+[3] Đang đẩy Image lên kho lưu trữ...
+> Chạy lệnh: docker push tobi1008/python:1789205714
+The push refers to repository [docker.io/tobi1008/python]
+f42e21cc7f9a: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f42e21cc7f9a: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f42e21cc7f9a: Waiting
+2726e237d1a3: Waiting
+f42e21cc7f9a: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+f42e21cc7f9a: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+f42e21cc7f9a: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f42e21cc7f9a: Waiting
+f42e21cc7f9a: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f42e21cc7f9a: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f42e21cc7f9a: Waiting
+44136fa355b3: Waiting
+f42e21cc7f9a: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f42e21cc7f9a: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f42e21cc7f9a: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+f42e21cc7f9a: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Layer already exists
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+f42e21cc7f9a: Waiting
+44136fa355b3: Already exists
+7962e2b983fd: Waiting
+f42e21cc7f9a: Waiting
+7962e2b983fd: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+f42e21cc7f9a: Waiting
+7962e2b983fd: Waiting
+ae28d8886667: Waiting
+7962e2b983fd: Layer already exists
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+f42e21cc7f9a: Waiting
+f42e21cc7f9a: Waiting
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+866b26ac4e47: Waiting
+f42e21cc7f9a: Waiting
+ae28d8886667: Waiting
+2ff48351d1f6: Waiting
+b65af0a51d86: Layer already exists
+ae28d8886667: Layer already exists
+2ff48351d1f6: Waiting
+1b2935b059b4: Waiting
+97a6fd0d20ce: Waiting
+866b26ac4e47: Layer already exists
+f42e21cc7f9a: Waiting
+2ff48351d1f6: Waiting
+1b2935b059b4: Waiting
+97a6fd0d20ce: Waiting
+f42e21cc7f9a: Waiting
+2ff48351d1f6: Layer already exists
+1b2935b059b4: Layer already exists
+97a6fd0d20ce: Waiting
+569a36841eac: Waiting
+f42e21cc7f9a: Waiting
+87dfb0fb0fb4: Waiting
+97a6fd0d20ce: Waiting
+569a36841eac: Waiting
+87dfb0fb0fb4: Waiting
+87dfb0fb0fb4: Waiting
+97a6fd0d20ce: Waiting
+569a36841eac: Waiting
+97a6fd0d20ce: Waiting
+569a36841eac: Waiting
+87dfb0fb0fb4: Waiting
+569a36841eac: Waiting
+87dfb0fb0fb4: Waiting
+569a36841eac: Waiting
+87dfb0fb0fb4: Waiting
+4f4fb700ef54: Waiting
+f42e21cc7f9a: Pushed
+4f4fb700ef54: Waiting
+4f4fb700ef54: Layer already exists
+569a36841eac: Pushed
+97a6fd0d20ce: Pushed
+87dfb0fb0fb4: Pushed
+1789205714: digest: sha256:000663d7843a381e4e3ee396f8bf5dfe312b0c34a56bbeb1ce584e2dd3470bb3 size: 856
+
+[4] Đang Rollout bản cập nhật lên K3s...
+> Chạy lệnh: kubectl set image deployment/python python=tobi1008/python:1789205714
+deployment.apps/python image updated
+
+=== [HOÀN TẤT CI/CD] python đã cập nhật lên phiên bản 1789205714 ===
+DONE
+
+=== [BẮT ĐẦU CI/CD REDEPLOY] python (Nhánh: main) ===
+[1] Đang kéo (Pull) mã nguồn mới nhất...
+> Chạy lệnh: git fetch --all
+Fetching origin
+
+> Chạy lệnh: git reset --hard origin/main
+HEAD is now at 5d9abdd Test Ci/cd Vibe hosting v4
+
+[2] Đang Build Docker Image phiên bản mới (tobi1008/python:1789206043)...
+> Chạy lệnh: nixpacks build . --name tobi1008/python:1789206043
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ python3, gcc                                                    ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ python -m venv --copies /opt/venv && . /opt/venv/bin/activate   ║
+║            │ && pip install -r requirements.txt                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ python app.py                                                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/python:1789206043
+
+[3] Đang đẩy Image lên kho lưu trữ...
+> Chạy lệnh: docker push tobi1008/python:1789206043
+The push refers to repository [docker.io/tobi1008/python]
+ba19899d8898: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+ba19899d8898: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+ba19899d8898: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+ba19899d8898: Waiting
+ba19899d8898: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+ba19899d8898: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+ba19899d8898: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+ba19899d8898: Waiting
+44136fa355b3: Waiting
+ba19899d8898: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+ba19899d8898: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+ba19899d8898: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+ba19899d8898: Waiting
+ba19899d8898: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+ba19899d8898: Waiting
+44136fa355b3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+ba19899d8898: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Layer already exists
+b65af0a51d86: Waiting
+ba19899d8898: Waiting
+b65af0a51d86: Waiting
+ba19899d8898: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+ba19899d8898: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Layer already exists
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+b65af0a51d86: Waiting
+ba19899d8898: Waiting
+44136fa355b3: Waiting
+866b26ac4e47: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+ba19899d8898: Waiting
+44136fa355b3: Waiting
+44136fa355b3: Already exists
+ae28d8886667: Waiting
+866b26ac4e47: Layer already exists
+b65af0a51d86: Layer already exists
+2ff48351d1f6: Waiting
+1b2935b059b4: Waiting
+ba19899d8898: Waiting
+ae28d8886667: Waiting
+2ff48351d1f6: Waiting
+1b2935b059b4: Waiting
+2ff48351d1f6: Layer already exists
+1b2935b059b4: Waiting
+7b9e8fee03ce: Waiting
+ae28d8886667: Layer already exists
+b1fd65525e6d: Waiting
+7b9e8fee03ce: Waiting
+762b16d7e3bb: Waiting
+b1fd65525e6d: Waiting
+1b2935b059b4: Layer already exists
+7b9e8fee03ce: Waiting
+762b16d7e3bb: Waiting
+b1fd65525e6d: Waiting
+762b16d7e3bb: Waiting
+b1fd65525e6d: Waiting
+7b9e8fee03ce: Waiting
+7b9e8fee03ce: Waiting
+762b16d7e3bb: Waiting
+b1fd65525e6d: Waiting
+7b9e8fee03ce: Waiting
+762b16d7e3bb: Waiting
+b1fd65525e6d: Waiting
+762b16d7e3bb: Waiting
+ba19899d8898: Pushed
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Layer already exists
+762b16d7e3bb: Pushed
+7b9e8fee03ce: Pushed
+b1fd65525e6d: Pushed
+1789206043: digest: sha256:20b02561699d72f6946c84db9eb49965e1d7649761e3ccd48f69779f5844c10d size: 856
+
+[4] Đang Rollout bản cập nhật lên K3s...
+> Chạy lệnh: kubectl set image deployment/python python=tobi1008/python:1789206043
+deployment.apps/python image updated
+
+=== [HOÀN TẤT CI/CD] python đã cập nhật lên phiên bản 1789206043 ===
+DONE
+
+=== [BẮT ĐẦU CI/CD REDEPLOY] python (Nhánh: main) ===
+[1] Đang kéo (Pull) mã nguồn mới nhất...
+> Chạy lệnh: git fetch --all
+Fetching origin
+
+> Chạy lệnh: git reset --hard origin/main
+HEAD is now at 7e0cfee Test Ci/cd Vibe hosting v5
+
+[2] Đang Build Docker Image phiên bản mới (tobi1008/python:1789206381)...
+> Chạy lệnh: nixpacks build . --name tobi1008/python:1789206381
+
+╔══════════════════════════════ Nixpacks v1.41.0 ══════════════════════════════╗
+║ setup      │ python3, gcc                                                    ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ install    │ python -m venv --copies /opt/venv && . /opt/venv/bin/activate   ║
+║            │ && pip install -r requirements.txt                              ║
+║──────────────────────────────────────────────────────────────────────────────║
+║ start      │ python app.py                                                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/python:1789206381
+
+[3] Đang đẩy Image lên kho lưu trữ...
+> Chạy lệnh: docker push tobi1008/python:1789206381
+The push refers to repository [docker.io/tobi1008/python]
+b286e0a1e593: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b286e0a1e593: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b286e0a1e593: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+b286e0a1e593: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+b286e0a1e593: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b286e0a1e593: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b286e0a1e593: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b286e0a1e593: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b286e0a1e593: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b286e0a1e593: Waiting
+44136fa355b3: Waiting
+b286e0a1e593: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b286e0a1e593: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+b286e0a1e593: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b286e0a1e593: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+b286e0a1e593: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+b286e0a1e593: Waiting
+44136fa355b3: Already exists
+7962e2b983fd: Waiting
+2726e237d1a3: Layer already exists
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+866b26ac4e47: Waiting
+b286e0a1e593: Waiting
+7962e2b983fd: Waiting
+b65af0a51d86: Waiting
+ae28d8886667: Waiting
+7962e2b983fd: Layer already exists
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+b286e0a1e593: Waiting
+866b26ac4e47: Waiting
+b286e0a1e593: Waiting
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+b286e0a1e593: Waiting
+ae28d8886667: Layer already exists
+2ff48351d1f6: Waiting
+1b2935b059b4: Waiting
+b65af0a51d86: Layer already exists
+866b26ac4e47: Layer already exists
+d7ff6c7cdce1: Waiting
+b286e0a1e593: Waiting
+1b2935b059b4: Waiting
+d7ff6c7cdce1: Waiting
+2ff48351d1f6: Waiting
+326b028f0910: Waiting
+d7ff6c7cdce1: Waiting
+a158048c2d85: Waiting
+2ff48351d1f6: Layer already exists
+1b2935b059b4: Layer already exists
+a158048c2d85: Waiting
+326b028f0910: Waiting
+d7ff6c7cdce1: Waiting
+d7ff6c7cdce1: Waiting
+a158048c2d85: Waiting
+326b028f0910: Waiting
+a158048c2d85: Waiting
+326b028f0910: Waiting
+d7ff6c7cdce1: Waiting
+326b028f0910: Waiting
+a158048c2d85: Waiting
+a158048c2d85: Waiting
+326b028f0910: Waiting
+b286e0a1e593: Pushed
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Layer already exists
+d7ff6c7cdce1: Pushed
+326b028f0910: Pushed
+a158048c2d85: Pushed
+1789206381: digest: sha256:f244c494023cdc7b0f5611d02ca36cbe8143120e16e267524d383fc23ce73e55 size: 856
+
+[4] Đang Rollout bản cập nhật lên K3s...
+> Chạy lệnh: kubectl set image deployment/python python=tobi1008/python:1789206381
+deployment.apps/python image updated
+
+=== [HOÀN TẤT CI/CD] python đã cập nhật lên phiên bản 1789206381 ===
+DONE

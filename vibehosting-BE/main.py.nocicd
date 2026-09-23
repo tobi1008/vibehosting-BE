@@ -1,0 +1,67 @@
+from fastapi import FastAPI, BackgroundTasks
+from pydantic import BaseModel
+import uvicorn
+import os
+from builder_core import deploy_app, delete_app
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI(title="Vibe Hosting API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], 
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+class DeployRequest(BaseModel):
+    repo_url: str
+    app_name: str
+    app_domain: str
+
+@app.post("/api/deploy")
+async def trigger_deploy(req: DeployRequest, background_tasks: BackgroundTasks):
+    background_tasks.add_task(deploy_app, req.repo_url, req.app_name, req.app_domain)
+    return {
+        "status": "success", 
+        "message": f"Đã đưa yêu cầu triển khai {req.app_name} vào hàng đợi.",
+        "app_url": f"https://{req.app_domain}"
+    }
+
+# === API ĐỂ FRONTEND LẤY LOG ===
+@app.get("/api/logs/{app_name}")
+async def get_logs(app_name: str):
+    log_file = f"/opt/vibe-hosting/logs/{app_name}.log"
+    
+    if not os.path.exists(log_file):
+        return {"logs": "Đang chuẩn bị môi trường...\n", "status": "running"}
+    
+    with open(log_file, "r", encoding="utf-8") as f:
+        content = f.read()
+        
+    status = "running"
+    if "DONE" in content:
+        status = "success"
+    elif "ERROR" in content:
+        status = "error"
+    elif "DELETED" in content:
+        status = "deleted"
+        
+    return {"logs": content, "status": status}
+
+# === API ĐỂ FRONTEND RA LỆNH XÓA DỰ ÁN ===
+@app.delete("/api/projects/{app_name}")
+async def api_delete_app(app_name: str, background_tasks: BackgroundTasks):
+    background_tasks.add_task(delete_app, app_name)
+    return {
+        "status": "success",
+        "message": f"Đã đưa lệnh xóa ứng dụng {app_name} vào tiến trình ngầm."
+    }
+
+@app.get("/api/health")
+async def health_check():
+    return {"status": "ok", "service": "Vibe Hosting API is running"}
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8080, reload=True)

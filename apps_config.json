@@ -1,0 +1,51 @@
+{
+  "thienne": {
+    "auto_cicd": false
+  },
+  "javascripts": {
+    "auto_cicd": false
+  },
+  "python": {
+    "auto_cicd": false
+  },
+  "nodejs": {
+    "auto_cicd": false
+  },
+  "profile": {
+    "auto_cicd": false
+  },
+  "personal-blog": {
+    "auto_cicd": false
+  },
+  "blog": {
+    "auto_cicd": true
+  },
+  "smmtobicom": {
+    "auto_cicd": true
+  },
+  "orishop": {
+    "auto_cicd": false
+  },
+  "tttn-3tshop-fe": {
+    "auto_cicd": false
+  },
+  "tttn-3tshop": {
+    "auto_cicd": false
+  },
+  "car-booking": {
+    "auto_cicd": true
+  },
+  "3tshop": {
+    "auto_cicd": false
+  },
+  "shop3t": {
+    "auto_cicd": false,
+    "be_repo_url": "https://github.com/ThienDuong2909/TTTN_3TShop_BE_CL",
+    "fe_repo_url": "https://github.com/ThienDuong2909/TTTN_3TShop_FE",
+    "be_domain": "api-shop3t.vibe.quyenlt.com",
+    "fe_domain": "shop3t.vibe.quyenlt.com",
+    "db_type": "mysql",
+    "primary_github_owner": "tobi1008",
+    "has_token": true
+  }
+}

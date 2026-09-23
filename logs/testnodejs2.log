@@ -1,0 +1,220 @@
+=== [BẮT ĐẦU DEPLOY] testnodejs2 ===
+[1] Đang clone repo: https://github.com/tobi1008/profile.git...
+> Chạy lệnh: git clone https://github.com/tobi1008/profile.git /opt/vibe-hosting/workspaces/testnodejs2
+[2] Đang quét cấu trúc mã nguồn...
+> Chạy lệnh: tree -I node_modules|.git|venv /opt/vibe-hosting/workspaces/testnodejs2
+/opt/vibe-hosting/workspaces/testnodejs2
+├── app
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── components
+│   └── Terminal.tsx
+├── docker-compose.prod.yml
+├── docker-compose.yml
+├── Dockerfile
+├── eslint.config.mjs
+├── Jenkinsfile
+├── next.config.ts
+├── package.json
+├── package-lock.json
+├── postcss.config.mjs
+├── public
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── hacker.png
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── README.md
+└── tsconfig.json
+
+3 directories, 22 files
+
+
+[3] (Lần thử 1/3) Gọi AI phân tích cấu hình & đánh giá mã nguồn...
+[4] Đang lưu cấu hình K3s & Nixpacks...
+[5] Bắt đầu build Docker image (tobi1008/testnodejs2:latest)...
+> Chạy lệnh: nixpacks build . --name tobi1008/testnodejs2:latest
+
+╔════════ Nixpacks v1.41.0 ═══════╗
+║ setup      │ nodejs_20, npm-9_x ║
+║─────────────────────────────────║
+║ install    │ npm ci             ║
+║─────────────────────────────────║
+║ build      │ npm run build      ║
+║─────────────────────────────────║
+║ start      │ npm run start      ║
+╚═════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/testnodejs2:latest
+
+[6] Đang đẩy Image lên Docker Hub (tobi1008)...
+> Chạy lệnh: docker push tobi1008/testnodejs2:latest
+The push refers to repository [docker.io/tobi1008/testnodejs2]
+2726e237d1a3: Waiting
+2773f7349bf1: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2773f7349bf1: Waiting
+2773f7349bf1: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2773f7349bf1: Waiting
+44136fa355b3: Waiting
+2773f7349bf1: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2773f7349bf1: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2773f7349bf1: Waiting
+44136fa355b3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2773f7349bf1: Waiting
+2773f7349bf1: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2726e237d1a3: Waiting
+2773f7349bf1: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2773f7349bf1: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2773f7349bf1: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2773f7349bf1: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2773f7349bf1: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+2773f7349bf1: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Layer already exists
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+2773f7349bf1: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+b65af0a51d86: Waiting
+2773f7349bf1: Waiting
+44136fa355b3: Waiting
+2773f7349bf1: Waiting
+44136fa355b3: Waiting
+866b26ac4e47: Waiting
+2726e237d1a3: Layer already exists
+b65af0a51d86: Waiting
+2773f7349bf1: Waiting
+44136fa355b3: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+2773f7349bf1: Waiting
+44136fa355b3: Already exists
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+55338622958b: Waiting
+866b26ac4e47: Layer already exists
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+ae28d8886667: Waiting
+b65af0a51d86: Waiting
+55338622958b: Waiting
+b65af0a51d86: Waiting
+52b13a6b7107: Waiting
+55338622958b: Layer already exists
+8c983a4e6042: Waiting
+ae28d8886667: Layer already exists
+8c983a4e6042: Waiting
+b65af0a51d86: Waiting
+52b13a6b7107: Waiting
+8c983a4e6042: Waiting
+b65af0a51d86: Waiting
+52b13a6b7107: Waiting
+8c983a4e6042: Waiting
+b65af0a51d86: Waiting
+52b13a6b7107: Waiting
+b65af0a51d86: Waiting
+52b13a6b7107: Waiting
+8c983a4e6042: Waiting
+b65af0a51d86: Waiting
+52b13a6b7107: Waiting
+8c983a4e6042: Waiting
+4f4fb700ef54: Waiting
+2773f7349bf1: Pushed
+959f2500a4d9: Waiting
+959f2500a4d9: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+959f2500a4d9: Waiting
+959f2500a4d9: Waiting
+4f4fb700ef54: Layer already exists
+292006972a85: Waiting
+292006972a85: Waiting
+959f2500a4d9: Waiting
+292006972a85: Waiting
+959f2500a4d9: Waiting
+292006972a85: Waiting
+292006972a85: Waiting
+292006972a85: Waiting
+d698b62a1026: Waiting
+52b13a6b7107: Pushed
+d698b62a1026: Waiting
+d698b62a1026: Waiting
+d698b62a1026: Waiting
+d698b62a1026: Waiting
+d698b62a1026: Waiting
+4f4fb700ef54: Layer already exists
+d698b62a1026: Pushed
+292006972a85: Pushed
+b65af0a51d86: Pushed
+8c983a4e6042: Pushed
+959f2500a4d9: Pushed
+latest: digest: sha256:591ae6eba384716afe6b94c16390b5d4110307ed2d93e66a8391b75e0fb0cfe0 size: 856
+
+[7] Yêu cầu K3s triển khai ứng dụng (Kèm tên miền & SSL)...
+> Chạy lệnh: kubectl apply -f k8s/deployment.yaml
+deployment.apps/testnodejs2 created
+
+> Chạy lệnh: kubectl apply -f k8s/service.yaml
+service/testnodejs2 created
+
+> Chạy lệnh: kubectl apply -f k8s/ingress.yaml
+ingress.networking.k8s.io/testnodejs2 created
+
+=== [HOÀN TẤT] Ứng dụng đã online tại https://testnodejs2.vibe.quyenlt.com ===
+DONE
+
+=== [BẮT ĐẦU XÓA DỰ ÁN] testnodejs2 ===
+[1] Đang xóa khỏi cụm K3s...
+[2] Đang xóa Local Docker Image...
+[3] Đang gọi API Docker Hub để xóa kho chứa...
+[4] Đang dọn dẹp mã nguồn trên VPS...
+=== [HOÀN TẤT XÓA] testnodejs2 ===
+DELETED

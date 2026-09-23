@@ -1,0 +1,466 @@
+=== [BẮT ĐẦU DEPLOY] neneancut ===
+[1] Đang clone repo: https://github.com/ThienDuong2909/TodoList.git...
+> Chạy lệnh: git clone https://github.com/ThienDuong2909/TodoList.git /opt/vibe-hosting/workspaces/neneancut
+[2] Đang quét cấu trúc mã nguồn...
+> Chạy lệnh: tree -I node_modules|.git|venv /opt/vibe-hosting/workspaces/neneancut
+/opt/vibe-hosting/workspaces/neneancut
+├── package.json
+├── package-lock.json
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+├── README.md
+├── src
+│   ├── App.css
+│   ├── App.js
+│   ├── index.css
+│   ├── index.js
+│   ├── logo.svg
+│   ├── reportWebVitals.js
+│   └── Todo
+│       ├── components
+│       │   ├── Footer.js
+│       │   ├── Header.js
+│       │   ├── TodoItem.js
+│       │   └── TodoList.js
+│       ├── css
+│       │   ├── base.css
+│       │   └── comon.css
+│       └── Todo.js
+└── temp.html
+
+5 directories, 23 files
+
+
+[3] (Lần thử 1/3) Bắt đầu gọi AI phân tích mã nguồn...
+⏳ Đang gửi yêu cầu tới Model: [stepfun/step-3.7-flash:free]...
+✅ Model [stepfun/step-3.7-flash:free] phản hồi thành công!
+[4] Đang lưu cấu hình K3s & Nixpacks...
+[5] Bắt đầu build Docker image (tobi1008/neneancut:latest)...
+> Chạy lệnh: nixpacks build . --name tobi1008/neneancut:latest
+
+[LỖI LỆNH] nixpacks build . --name tobi1008/neneancut:latest
+Chi tiết lỗi: Error: Failed to parse Nixpacks config file `nixpacks.toml`
+
+Caused by:
+    invalid type: string "npm run build", expected struct Phase for key `phases.build` at line 2 column 9
+
+
+[!] Build thất bại. Yêu cầu AI phân tích log lỗi để tìm hướng khắc phục...
+
+[3] (Lần thử 2/3) Bắt đầu gọi AI phân tích mã nguồn...
+⏳ Đang gửi yêu cầu tới Model: [stepfun/step-3.7-flash:free]...
+✅ Model [stepfun/step-3.7-flash:free] phản hồi thành công!
+[4] Đang lưu cấu hình K3s & Nixpacks...
+[5] Bắt đầu build Docker image (tobi1008/neneancut:latest)...
+> Chạy lệnh: nixpacks build . --name tobi1008/neneancut:latest
+
+[LỖI LỆNH] nixpacks build . --name tobi1008/neneancut:latest
+Chi tiết lỗi: #0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.11kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for ghcr.io/railwayapp/nixpacks:ubuntu-1745885067
+#2 DONE 1.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 952.84kB 0.0s done
+#4 DONE 0.0s
+
+#5 [stage-0  1/10] FROM ghcr.io/railwayapp/nixpacks:ubuntu-1745885067@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de
+#5 resolve ghcr.io/railwayapp/nixpacks:ubuntu-1745885067@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de 0.0s done
+#5 DONE 0.0s
+
+#6 [stage-0  2/10] WORKDIR /app/
+#6 CACHED
+
+#7 [stage-0  3/10] COPY .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix
+#7 CACHED
+
+#8 [stage-0  4/10] RUN nix-env -if .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix && nix-collect-garbage -d
+#8 CACHED
+
+#9 [stage-0  5/10] COPY . /app/.
+#9 DONE 0.0s
+
+#10 [stage-0  6/10] RUN --mount=type=cache,id=i0xfRfryAsY-/root/npm,target=/root/.npm npm ci
+#10 0.472 npm warn config production Use `--omit=dev` instead.
+#10 7.363 npm warn deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+#10 7.560 npm warn deprecated rollup-plugin-terser@7.0.2: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
+#10 7.956 npm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+#10 8.068 npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+#10 8.854 npm warn deprecated workbox-cacheable-response@6.6.0: workbox-background-sync@6.6.0
+#10 10.79 npm warn deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+#10 17.70 
+#10 17.70 added 1486 packages, and audited 1487 packages in 17s
+#10 17.70 
+#10 17.70 235 packages are looking for funding
+#10 17.70   run `npm fund` for details
+#10 17.86 
+#10 17.86 69 vulnerabilities (15 low, 18 moderate, 32 high, 4 critical)
+#10 17.86 
+#10 17.86 To address issues that do not require attention, run:
+#10 17.86   npm audit fix
+#10 17.86 
+#10 17.86 To address all issues (including breaking changes), run:
+#10 17.86   npm audit fix --force
+#10 17.86 
+#10 17.86 Run `npm audit` for details.
+#10 DONE 18.5s
+
+#11 [stage-0  7/10] COPY . /app/.
+#11 DONE 0.4s
+
+#12 [stage-0  8/10] RUN --mount=type=cache,id=i0xfRfryAsY-node_modules/cache,target=/app/node_modules/.cache npm run build
+#12 0.391 npm warn config production Use `--omit=dev` instead.
+#12 0.418 
+#12 0.418 > tiktok@0.1.0 build
+#12 0.418 > react-scripts build
+#12 0.418 
+#12 2.395 Creating an optimized production build...
+#12 2.554 Browserslist: caniuse-lite is outdated. Please run:
+#12 2.554   npx update-browserslist-db@latest
+#12 2.554   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+#12 8.282 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
+#12 8.282 "@babel/plugin-proposal-private-property-in-object" package without
+#12 8.282 declaring it in its dependencies. This is currently working because
+#12 8.282 "@babel/plugin-proposal-private-property-in-object" is already in your
+#12 8.282 node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
+#12 8.282 
+#12 8.282 babel-preset-react-app is part of the create-react-app project, [1mwhich
+#12 8.282 is not maintianed anymore[0;33m. It is thus unlikely that this bug will
+#12 8.282 ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+#12 8.282 your devDependencies to work around this error. This will make this message
+#12 8.282 go away.[0m
+#12 8.282   
+#12 8.607 Browserslist: caniuse-lite is outdated. Please run:
+#12 8.607   npx update-browserslist-db@latest
+#12 8.607   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+#12 9.438 
+#12 9.438 Treating warnings as errors because process.env.CI = true.
+#12 9.438 Most CI servers set it automatically.
+#12 9.438 
+#12 9.438 Failed to compile.
+#12 9.438 
+#12 9.439 [eslint] 
+#12 9.439 src/Todo/Todo.js
+#12 9.439   Line 40:8:  React Hook useEffect has missing dependencies: 'data' and 'filters'. Either include them or remove the dependency array. You can also replace multiple useState variables with useReducer if 'setJobs' needs the current value of 'data'  react-hooks/exhaustive-deps
+#12 9.439 
+#12 9.439 src/Todo/components/Footer.js
+#12 9.439   Line 12:8:   The href attribute is required for an anchor to be keyboard accessible. Provide a valid, navigable address as the href value. If you cannot provide an href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md  jsx-a11y/anchor-is-valid
+#12 9.439   Line 12:27:  Expected '===' and instead saw '=='                                                                                                                                                                                                                                                                                                                                       eqeqeq
+#12 9.439 
+#12 9.439 src/Todo/components/TodoItem.js
+#12 9.439   Line 16:9:  'liClasses' is assigned a value but never used  no-unused-vars
+#12 9.439 
+#12 9.439 
+#12 ERROR: process "/bin/bash -ol pipefail -c npm run build" did not complete successfully: exit code: 1
+------
+ > [stage-0  8/10] RUN --mount=type=cache,id=i0xfRfryAsY-node_modules/cache,target=/app/node_modules/.cache npm run build:
+9.439   Line 40:8:  React Hook useEffect has missing dependencies: 'data' and 'filters'. Either include them or remove the dependency array. You can also replace multiple useState variables with useReducer if 'setJobs' needs the current value of 'data'  react-hooks/exhaustive-deps
+9.439 
+9.439 src/Todo/components/Footer.js
+9.439   Line 12:8:   The href attribute is required for an anchor to be keyboard accessible. Provide a valid, navigable address as the href value. If you cannot provide an href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md  jsx-a11y/anchor-is-valid
+9.439   Line 12:27:  Expected '===' and instead saw '=='                                                                                                                                                                                                                                                                                                                                       eqeqeq
+9.439 
+9.439 src/Todo/components/TodoItem.js
+9.439   Line 16:9:  'liClasses' is assigned a value but never used  no-unused-vars
+9.439 
+9.439 
+------
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - UndefinedVar: Usage of undefined variable '$NIXPACKS_PATH' (line 18)
+Dockerfile:24
+--------------------
+  22 |     # build phase
+  23 |     COPY . /app/.
+  24 | >>> RUN --mount=type=cache,id=i0xfRfryAsY-node_modules/cache,target=/app/node_modules/.cache npm run build
+  25 |     
+  26 |     
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/bash -ol pipefail -c npm run build" did not complete successfully: exit code: 1
+Error: Docker build failed
+
+
+[!] Build thất bại. Yêu cầu AI phân tích log lỗi để tìm hướng khắc phục...
+
+[3] (Lần thử 3/3) Bắt đầu gọi AI phân tích mã nguồn...
+⏳ Đang gửi yêu cầu tới Model: [stepfun/step-3.7-flash:free]...
+✅ Model [stepfun/step-3.7-flash:free] phản hồi thành công!
+ 🛠️ [AUTO-HEAL] AI đang tự động vá lỗi file: src/Todo/Todo.js...
+ 🛠️ [AUTO-HEAL] AI đang tự động vá lỗi file: src/Todo/components/Footer.js...
+ 🛠️ [AUTO-HEAL] AI đang tự động vá lỗi file: src/Todo/components/TodoItem.js...
+[4] Đang lưu cấu hình K3s & Nixpacks...
+[5] Bắt đầu build Docker image (tobi1008/neneancut:latest)...
+> Chạy lệnh: nixpacks build . --name tobi1008/neneancut:latest
+
+[LỖI LỆNH] nixpacks build . --name tobi1008/neneancut:latest
+Chi tiết lỗi: #0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.11kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for ghcr.io/railwayapp/nixpacks:ubuntu-1745885067
+#2 DONE 1.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [stage-0  1/10] FROM ghcr.io/railwayapp/nixpacks:ubuntu-1745885067@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de
+#4 resolve ghcr.io/railwayapp/nixpacks:ubuntu-1745885067@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 947.35kB 0.0s done
+#5 DONE 0.0s
+
+#6 [stage-0  2/10] WORKDIR /app/
+#6 CACHED
+
+#7 [stage-0  3/10] COPY .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix
+#7 CACHED
+
+#8 [stage-0  4/10] RUN nix-env -if .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix && nix-collect-garbage -d
+#8 CACHED
+
+#9 [stage-0  5/10] COPY . /app/.
+#9 DONE 0.0s
+
+#10 [stage-0  6/10] RUN --mount=type=cache,id=i0xfRfryAsY-/root/npm,target=/root/.npm npm ci
+#10 0.410 npm warn config production Use `--omit=dev` instead.
+#10 7.185 npm warn deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+#10 7.432 npm warn deprecated rollup-plugin-terser@7.0.2: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
+#10 7.823 npm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+#10 7.907 npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+#10 8.722 npm warn deprecated workbox-cacheable-response@6.6.0: workbox-background-sync@6.6.0
+#10 10.43 npm warn deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+#10 15.93 
+#10 15.93 added 1486 packages, and audited 1487 packages in 16s
+#10 15.93 
+#10 15.93 235 packages are looking for funding
+#10 15.93   run `npm fund` for details
+#10 16.06 
+#10 16.06 69 vulnerabilities (15 low, 18 moderate, 32 high, 4 critical)
+#10 16.06 
+#10 16.06 To address issues that do not require attention, run:
+#10 16.06   npm audit fix
+#10 16.06 
+#10 16.06 To address all issues (including breaking changes), run:
+#10 16.06   npm audit fix --force
+#10 16.06 
+#10 16.06 Run `npm audit` for details.
+#10 DONE 16.7s
+
+#11 [stage-0  7/10] COPY . /app/.
+#11 DONE 0.4s
+
+#12 [stage-0  8/10] RUN --mount=type=cache,id=i0xfRfryAsY-node_modules/cache,target=/app/node_modules/.cache npm run build
+#12 0.352 npm warn config production Use `--omit=dev` instead.
+#12 0.376 
+#12 0.376 > tiktok@0.1.0 build
+#12 0.376 > react-scripts build
+#12 0.376 
+#12 2.333 Creating an optimized production build...
+#12 2.509 Browserslist: caniuse-lite is outdated. Please run:
+#12 2.509   npx update-browserslist-db@latest
+#12 2.509   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+#12 5.883 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
+#12 5.883 "@babel/plugin-proposal-private-property-in-object" package without
+#12 5.883 declaring it in its dependencies. This is currently working because
+#12 5.883 "@babel/plugin-proposal-private-property-in-object" is already in your
+#12 5.883 node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
+#12 5.883 
+#12 5.883 babel-preset-react-app is part of the create-react-app project, [1mwhich
+#12 5.883 is not maintianed anymore[0;33m. It is thus unlikely that this bug will
+#12 5.883 ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+#12 5.883 your devDependencies to work around this error. This will make this message
+#12 5.883 go away.[0m
+#12 5.883   
+#12 7.716 Failed to compile.
+#12 7.716 
+#12 7.717 [eslint] 
+#12 7.717 src/Todo/Todo.js
+#12 7.717   Line 1:1:   'useEffect' is not defined                                                                                                                          no-undef
+#12 7.717   Line 1:1:   React Hook "useEffect" cannot be called at the top level. React Hooks must be called in a React function component or a custom React Hook function  react-hooks/rules-of-hooks
+#12 7.717   Line 3:5:   'data' is not defined                                                                                                                               no-undef
+#12 7.717   Line 3:11:  'filters' is not defined                                                                                                                            no-undef
+#12 7.717 
+#12 7.717 Search for the keywords to learn more about each error.
+#12 7.717 
+#12 7.717 
+#12 ERROR: process "/bin/bash -ol pipefail -c npm run build" did not complete successfully: exit code: 1
+------
+ > [stage-0  8/10] RUN --mount=type=cache,id=i0xfRfryAsY-node_modules/cache,target=/app/node_modules/.cache npm run build:
+7.717 [eslint] 
+7.717 src/Todo/Todo.js
+7.717   Line 1:1:   'useEffect' is not defined                                                                                                                          no-undef
+7.717   Line 1:1:   React Hook "useEffect" cannot be called at the top level. React Hooks must be called in a React function component or a custom React Hook function  react-hooks/rules-of-hooks
+7.717   Line 3:5:   'data' is not defined                                                                                                                               no-undef
+7.717   Line 3:11:  'filters' is not defined                                                                                                                            no-undef
+7.717 
+7.717 Search for the keywords to learn more about each error.
+7.717 
+7.717 
+------
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - UndefinedVar: Usage of undefined variable '$NIXPACKS_PATH' (line 18)
+Dockerfile:24
+--------------------
+  22 |     # build phase
+  23 |     COPY . /app/.
+  24 | >>> RUN --mount=type=cache,id=i0xfRfryAsY-node_modules/cache,target=/app/node_modules/.cache npm run build
+  25 |     
+  26 |     
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/bash -ol pipefail -c npm run build" did not complete successfully: exit code: 1
+Error: Docker build failed
+
+
+[LỖI QUY TRÌNH DEPLOY] Đã nỗ lực 3 lần nhưng Build thất bại. Lỗi: 
+[LỖI LỆNH] nixpacks build . --name tobi1008/neneancut:latest
+Chi tiết lỗi: #0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.11kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for ghcr.io/railwayapp/nixpacks:ubuntu-1745885067
+#2 DONE 1.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [stage-0  1/10] FROM ghcr.io/railwayapp/nixpacks:ubuntu-1745885067@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de
+#4 resolve ghcr.io/railwayapp/nixpacks:ubuntu-1745885067@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 947.35kB 0.0s done
+#5 DONE 0.0s
+
+#6 [stage-0  2/10] WORKDIR /app/
+#6 CACHED
+
+#7 [stage-0  3/10] COPY .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix
+#7 CACHED
+
+#8 [stage-0  4/10] RUN nix-env -if .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix && nix-collect-garbage -d
+#8 CACHED
+
+#9 [stage-0  5/10] COPY . /app/.
+#9 DONE 0.0s
+
+#10 [stage-0  6/10] RUN --mount=type=cache,id=i0xfRfryAsY-/root/npm,target=/root/.npm npm ci
+#10 0.410 npm warn config production Use `--omit=dev` instead.
+#10 7.185 npm warn deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+#10 7.432 npm warn deprecated rollup-plugin-terser@7.0.2: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
+#10 7.823 npm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+#10 7.907 npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+#10 8.722 npm warn deprecated workbox-cacheable-response@6.6.0: workbox-background-sync@6.6.0
+#10 10.43 npm warn deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+#10 15.93 
+#10 15.93 added 1486 packages, and audited 1487 packages in 16s
+#10 15.93 
+#10 15.93 235 packages are looking for funding
+#10 15.93   run `npm fund` for details
+#10 16.06 
+#10 16.06 69 vulnerabilities (15 low, 18 moderate, 32 high, 4 critical)
+#10 16.06 
+#10 16.06 To address issues that do not require attention, run:
+#10 16.06   npm audit fix
+#10 16.06 
+#10 16.06 To address all issues (including breaking changes), run:
+#10 16.06   npm audit fix --force
+#10 16.06 
+#10 16.06 Run `npm audit` for details.
+#10 DONE 16.7s
+
+#11 [stage-0  7/10] COPY . /app/.
+#11 DONE 0.4s
+
+#12 [stage-0  8/10] RUN --mount=type=cache,id=i0xfRfryAsY-node_modules/cache,target=/app/node_modules/.cache npm run build
+#12 0.352 npm warn config production Use `--omit=dev` instead.
+#12 0.376 
+#12 0.376 > tiktok@0.1.0 build
+#12 0.376 > react-scripts build
+#12 0.376 
+#12 2.333 Creating an optimized production build...
+#12 2.509 Browserslist: caniuse-lite is outdated. Please run:
+#12 2.509   npx update-browserslist-db@latest
+#12 2.509   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+#12 5.883 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
+#12 5.883 "@babel/plugin-proposal-private-property-in-object" package without
+#12 5.883 declaring it in its dependencies. This is currently working because
+#12 5.883 "@babel/plugin-proposal-private-property-in-object" is already in your
+#12 5.883 node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
+#12 5.883 
+#12 5.883 babel-preset-react-app is part of the create-react-app project, [1mwhich
+#12 5.883 is not maintianed anymore[0;33m. It is thus unlikely that this bug will
+#12 5.883 ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+#12 5.883 your devDependencies to work around this error. This will make this message
+#12 5.883 go away.[0m
+#12 5.883   
+#12 7.716 Failed to compile.
+#12 7.716 
+#12 7.717 [eslint] 
+#12 7.717 src/Todo/Todo.js
+#12 7.717   Line 1:1:   'useEffect' is not defined                                                                                                                          no-undef
+#12 7.717   Line 1:1:   React Hook "useEffect" cannot be called at the top level. React Hooks must be called in a React function component or a custom React Hook function  react-hooks/rules-of-hooks
+#12 7.717   Line 3:5:   'data' is not defined                                                                                                                               no-undef
+#12 7.717   Line 3:11:  'filters' is not defined                                                                                                                            no-undef
+#12 7.717 
+#12 7.717 Search for the keywords to learn more about each error.
+#12 7.717 
+#12 7.717 
+#12 ERROR: process "/bin/bash -ol pipefail -c npm run build" did not complete successfully: exit code: 1
+------
+ > [stage-0  8/10] RUN --mount=type=cache,id=i0xfRfryAsY-node_modules/cache,target=/app/node_modules/.cache npm run build:
+7.717 [eslint] 
+7.717 src/Todo/Todo.js
+7.717   Line 1:1:   'useEffect' is not defined                                                                                                                          no-undef
+7.717   Line 1:1:   React Hook "useEffect" cannot be called at the top level. React Hooks must be called in a React function component or a custom React Hook function  react-hooks/rules-of-hooks
+7.717   Line 3:5:   'data' is not defined                                                                                                                               no-undef
+7.717   Line 3:11:  'filters' is not defined                                                                                                                            no-undef
+7.717 
+7.717 Search for the keywords to learn more about each error.
+7.717 
+7.717 
+------
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - UndefinedVar: Usage of undefined variable '$NIXPACKS_PATH' (line 18)
+Dockerfile:24
+--------------------
+  22 |     # build phase
+  23 |     COPY . /app/.
+  24 | >>> RUN --mount=type=cache,id=i0xfRfryAsY-node_modules/cache,target=/app/node_modules/.cache npm run build
+  25 |     
+  26 |     
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/bash -ol pipefail -c npm run build" did not complete successfully: exit code: 1
+Error: Docker build failed
+
+ERROR
+
+=== [BẮT ĐẦU XÓA DỰ ÁN] neneancut ===
+[1] Đang xóa khỏi cụm K3s...
+[2] Đang xóa Local Docker Image...
+[3] Đang gọi API Docker Hub để xóa kho chứa...
+[4] Đang dọn dẹp mã nguồn trên VPS...
+=== [HOÀN TẤT XÓA] neneancut ===
+DELETED

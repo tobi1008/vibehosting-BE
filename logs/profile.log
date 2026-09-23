@@ -1,0 +1,252 @@
+=== [BẮT ĐẦU DEPLOY] profile ===
+[1] Đang clone repo: https://github.com/tobi1008/profile.git...
+> Chạy lệnh: git clone https://github.com/tobi1008/profile.git /opt/vibe-hosting/workspaces/profile
+[2] Đang quét cấu trúc mã nguồn...
+> Chạy lệnh: tree -I node_modules|.git|venv /opt/vibe-hosting/workspaces/profile
+/opt/vibe-hosting/workspaces/profile
+├── app
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── components
+│   └── Terminal.tsx
+├── docker-compose.prod.yml
+├── docker-compose.yml
+├── Dockerfile
+├── eslint.config.mjs
+├── Jenkinsfile
+├── next.config.ts
+├── package.json
+├── package-lock.json
+├── postcss.config.mjs
+├── public
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── hacker.png
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── README.md
+└── tsconfig.json
+
+3 directories, 22 files
+
+
+[3] (Lần thử 1/3) Bắt đầu gọi AI phân tích mã nguồn...
+⏳ Đang gửi yêu cầu tới Model: [stepfun/step-3.7-flash:free]...
+✅ Model [stepfun/step-3.7-flash:free] phản hồi thành công!
+[4] Đang lưu cấu hình K3s & Nixpacks...
+[5] Bắt đầu build Docker image (tobi1008/profile:latest)...
+> Chạy lệnh: nixpacks build . --name tobi1008/profile:latest
+
+╔════════ Nixpacks v1.41.0 ═══════╗
+║ setup      │ nodejs_20, npm-9_x ║
+║─────────────────────────────────║
+║ install    │ npm ci             ║
+║─────────────────────────────────║
+║ build      │ npm run build      ║
+║─────────────────────────────────║
+║ start      │ npm run start      ║
+╚═════════════════════════════════╝
+
+=== Successfully Built! ===
+
+Run:
+  docker run -it tobi1008/profile:latest
+
+[6] Đang đẩy Image lên Docker Hub (tobi1008)...
+> Chạy lệnh: docker push tobi1008/profile:latest
+The push refers to repository [docker.io/tobi1008/profile]
+759b18c26987: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+759b18c26987: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+759b18c26987: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+759b18c26987: Waiting
+44136fa355b3: Waiting
+759b18c26987: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+759b18c26987: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+759b18c26987: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+759b18c26987: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+759b18c26987: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+759b18c26987: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+759b18c26987: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+759b18c26987: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+759b18c26987: Waiting
+44136fa355b3: Waiting
+759b18c26987: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+759b18c26987: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+759b18c26987: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+759b18c26987: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+759b18c26987: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+759b18c26987: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+759b18c26987: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+759b18c26987: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+44136fa355b3: Waiting
+7962e2b983fd: Waiting
+2726e237d1a3: Waiting
+44136fa355b3: Waiting
+2726e237d1a3: Waiting
+759b18c26987: Pushed
+b65af0a51d86: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+ae28d8886667: Waiting
+866b26ac4e47: Waiting
+44136fa355b3: Pushed
+b65af0a51d86: Waiting
+b65af0a51d86: Waiting
+ae28d8886667: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+ae28d8886667: Waiting
+866b26ac4e47: Waiting
+b65af0a51d86: Waiting
+ae28d8886667: Waiting
+866b26ac4e47: Waiting
+866b26ac4e47: Waiting
+ae28d8886667: Waiting
+ae28d8886667: Waiting
+ae28d8886667: Waiting
+866b26ac4e47: Pushed
+55338622958b: Waiting
+8c983a4e6042: Waiting
+55338622958b: Waiting
+ae28d8886667: Pushed
+8c983a4e6042: Waiting
+55338622958b: Waiting
+8c983a4e6042: Waiting
+55338622958b: Waiting
+8c983a4e6042: Waiting
+55338622958b: Waiting
+8c983a4e6042: Waiting
+55338622958b: Waiting
+8c983a4e6042: Waiting
+55338622958b: Waiting
+8c983a4e6042: Waiting
+55338622958b: Waiting
+8c983a4e6042: Waiting
+55338622958b: Waiting
+55338622958b: Waiting
+8c983a4e6042: Waiting
+8c983a4e6042: Waiting
+55338622958b: Waiting
+703bf71992f0: Waiting
+55338622958b: Pushed
+703bf71992f0: Waiting
+703bf71992f0: Waiting
+703bf71992f0: Waiting
+703bf71992f0: Waiting
+703bf71992f0: Waiting
+703bf71992f0: Pushed
+ba0a71b993e2: Waiting
+ba0a71b993e2: Waiting
+ba0a71b993e2: Waiting
+ba0a71b993e2: Waiting
+ba0a71b993e2: Waiting
+ba0a71b993e2: Waiting
+ba0a71b993e2: Waiting
+7962e2b983fd: Pushed
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Pushed
+234579f32f09: Waiting
+234579f32f09: Waiting
+234579f32f09: Waiting
+234579f32f09: Waiting
+234579f32f09: Waiting
+234579f32f09: Waiting
+99c117e63100: Waiting
+2726e237d1a3: Pushed
+99c117e63100: Waiting
+99c117e63100: Waiting
+99c117e63100: Waiting
+99c117e63100: Waiting
+99c117e63100: Waiting
+99c117e63100: Pushed
+4f4fb700ef54: Pushed
+b65af0a51d86: Pushed
+234579f32f09: Pushed
+8c983a4e6042: Pushed
+ba0a71b993e2: Pushed
+latest: digest: sha256:10b26cc68ad69f91abd08528bd973adaf62a7f18740c8dd3173c11946dd2fb6a size: 856
+
+[7] Yêu cầu K3s triển khai ứng dụng (Kèm tên miền & SSL)...
+> Chạy lệnh: kubectl apply -f k8s/deployment.yaml
+deployment.apps/profile created
+
+> Chạy lệnh: kubectl apply -f k8s/service.yaml
+service/profile created
+
+> Chạy lệnh: kubectl apply -f k8s/ingress.yaml
+ingress.networking.k8s.io/profile created
+
+=== [HOÀN TẤT] Ứng dụng đã online tại https://profile.vibe.quyenlt.com ===
+DONE

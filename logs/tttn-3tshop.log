@@ -1,0 +1,7 @@
+
+=== [BẮT ĐẦU CI/CD REDEPLOY] tttn-3tshop (Nhánh: main) ===
+[1] Đang kéo (Pull) mã nguồn mới nhất...
+> Chạy lệnh: git fetch --all
+
+[LỖI CI/CD] [Errno 2] No such file or directory: '/opt/vibe-hosting/workspaces/tttn-3tshop'
+ERROR
